@@ -102,6 +102,12 @@ label {
   white-space: nowrap;
 }
 
+.status-stat {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
 .status-dot {
   width: 12px;
   height: 12px;
@@ -511,6 +517,7 @@ label {
 
 .log-line.error .log-msg { color: #ff8a8a; }
 .log-line.success .log-msg { color: #8affa8; }
+.log-line.status .log-msg { color: #8fd6ff; }
 
 .modal {
   position: fixed;

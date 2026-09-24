@@ -19,6 +19,15 @@
     return m ? m[0] : "📁";
   }
 
+  function fmtUptime(sec) {
+    sec = parseInt(sec || 0, 10);
+    var h = Math.floor(sec / 3600);
+    var m = Math.floor((sec % 3600) / 60);
+    var s = sec % 60;
+    if (h) return h + "ชม " + m + "นาที";
+    return m + "นาที " + s + "วิ";
+  }
+
   var running = false;
   var currentFilter = "";
   var roomData = { categories: [], loaded: false };
@@ -448,7 +457,7 @@
       } catch (e) {
         entry = { message: ev.data };
       }
-      var type = entry.type === "error" ? "error" : (entry.type === "success" ? "success" : "info");
+      var type = entry.type === "error" ? "error" : (entry.type === "success" ? "success" : (entry.type === "status" ? "status" : "info"));
       var line = document.createElement("div");
       line.className = "log-line " + type;
       line.innerHTML =
@@ -468,12 +477,22 @@
       dot.className = "status-dot " + (on ? "on" : "off");
       $("#status-text").textContent = on ? "Bot Online" : "Bot Offline";
       var btn = $("#btn-start");
+      var rbtn = $("#btn-restart");
+      var stat = $("#status-stat");
       if (on) {
         btn.disabled = true;
         btn.textContent = "✅ Bot Online";
+        var parts = [];
+        parts.push("📁 " + (data.guild_count || 0) + " เซิร์ฟ");
+        parts.push("👥 " + (data.member_count || 0) + " คน");
+        if (data.uptime_seconds) parts.push("⏱️ " + fmtUptime(data.uptime_seconds));
+        stat.textContent = " · " + parts.join(" · ");
+        if (rbtn) rbtn.disabled = false;
       } else {
         btn.disabled = false;
         btn.textContent = "▶ เริ่ม Bot";
+        stat.textContent = "";
+        if (rbtn) rbtn.disabled = true;
       }
       return data;
     } catch (e) { return null; }
@@ -502,6 +521,29 @@
     setTimeout(refreshAndServers, 3000);
   }
 
+  async function restartBot() {
+    var btn = $("#btn-restart");
+    if (!btn || btn.disabled) return;
+    btn.disabled = true;
+    btn.textContent = "⏳ กำลัง restart...";
+    try {
+      var res = await fetch("/api/restart", { method: "POST" });
+      var data = await res.json();
+      if (data.success) {
+        toast("🔄 " + (data.message || "กำลัง restart บอท"), "info");
+      } else {
+        toast("❌ " + (data.error || "restart ไม่สำเร็จ"), "error");
+        btn.disabled = false;
+        btn.textContent = "🔄 Restart";
+      }
+    } catch (e) {
+      toast("❌ ไม่สามารถ restart ได้", "error");
+      btn.disabled = false;
+      btn.textContent = "🔄 Restart";
+    }
+    setTimeout(refreshAndServers, 3000);
+  }
+
   async function refreshAndServers() {
     await refreshStatus();
     loadServers();
@@ -509,6 +551,7 @@
 
   function wire() {
     $("#btn-start").addEventListener("click", startBot);
+    $("#btn-restart").addEventListener("click", restartBot);
     $("#btn-refresh-guilds").addEventListener("click", loadServers);
     $("#btn-load-rooms").addEventListener("click", loadRooms);
     $("#btn-delete-rooms").addEventListener("click", deleteRooms);

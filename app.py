@@ -66,6 +66,7 @@ def index():
 @app.route("/api/status")
 def status():
     bot = discord_bot.bot_user()
+    stats = discord_bot.stats()
     return jsonify(
         {
             "online": discord_bot.is_ready(),
@@ -73,6 +74,9 @@ def status():
             "client_id": str(bot.id) if bot else None,
             "invite_url": discord_bot.invite_url(),
             "guilds": discord_bot.guilds(),
+            "guild_count": stats["guild_count"],
+            "member_count": stats["member_count"],
+            "uptime_seconds": stats["uptime_seconds"],
         }
     )
 
@@ -146,6 +150,53 @@ def keep_alive():
                 }
             )
             try_start_bot()
+
+
+def format_uptime(seconds):
+    seconds = int(seconds or 0)
+    hours, remainder = divmod(seconds, 3600)
+    minutes, secs = divmod(remainder, 60)
+    if hours:
+        return f"{hours}ชม {minutes}นาที"
+    return f"{minutes}นาที {secs}วิ"
+
+
+def status_logger():
+    while True:
+        time.sleep(60)
+        st = discord_bot.stats()
+        if st["online"]:
+            msg = (
+                f"🟢 สถานะ: ออนไลน์ · 🤖 {st['bot']} · "
+                f"📁 {st['guild_count']} เซิร์ฟเวอร์ · "
+                f"👥 {st['member_count']:,} สมาชิก"
+            )
+            if st.get("uptime_seconds") is not None:
+                msg += f" · ⏱️ {format_uptime(st['uptime_seconds'])}"
+            add_log({"type": "status", "message": msg})
+        else:
+            add_log(
+                {
+                    "type": "error",
+                    "message": "🔴 สถานะ: บอทออฟไลน์ — กำลังรอเชื่อมต่อใหม่อัตโนมัติ...",
+                }
+            )
+
+
+@app.route("/api/restart", methods=["POST"])
+def restart_bot():
+    if not discord_bot.is_ready() and not bot_started:
+        return jsonify(
+            {"success": False, "error": "บอทยังไม่เริ่มอยู่ จึงไม่ต้อง restart"}
+        ), 400
+
+    add_log("🔄 รับคำสั่ง restart บอท...")
+    ok = discord_bot.restart(add_log)
+    if not ok:
+        return jsonify(
+            {"success": False, "error": "restart ไม่สำเร็จ ดูรายละเอียดใน Log"}
+        ), 500
+    return jsonify({"success": True, "message": "กำลัง restart บอท..."})
 
 
 @app.route("/api/build", methods=["POST"])
@@ -385,6 +436,7 @@ def logs():
 if __name__ == "__main__":
     try_start_bot(initial=True)
     threading.Thread(target=keep_alive, daemon=True).start()
+    threading.Thread(target=status_logger, daemon=True).start()
     app.run(
         host="0.0.0.0",
         port=int(os.getenv("PORT", "5000")),

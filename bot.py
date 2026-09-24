@@ -4,6 +4,7 @@ import json
 import os
 import re
 import threading
+import time
 from pathlib import Path
 
 import discord
@@ -116,6 +117,7 @@ class DiscordBuilder:
         self._token = None
         self._add_log = None
         self._ready_event = threading.Event()
+        self._ready_at = None
         self._started = False
         self._lock = threading.Lock()
         self._state_lock = threading.Lock()
@@ -170,6 +172,74 @@ class DiscordBuilder:
     def can_restart(self):
         return not self._started
 
+    def bot_username(self):
+        client = self._client
+        if client is None or client.user is None:
+            return None
+        return str(client.user)
+
+    def uptime_seconds(self):
+        if not self.is_ready() or self._ready_at is None:
+            return None
+        return max(0, int(time.time() - self._ready_at))
+
+    def stats(self):
+        client = self._client
+        online = self.is_ready()
+        guilds = []
+        total_members = 0
+        if online and client is not None:
+            guilds = sorted(client.guilds, key=lambda g: g.name.lower())
+            total_members = sum(getattr(g, "member_count", 0) or 0 for g in guilds)
+        return {
+            "online": online,
+            "bot": self.bot_username(),
+            "guild_count": len(guilds),
+            "member_count": total_members,
+            "uptime_seconds": self.uptime_seconds(),
+        }
+
+    def stop(self):
+        client = None
+        loop = None
+        with self._lock:
+            self._started = False
+            self._ready_event.clear()
+            self._ready_at = None
+            client = self._client
+            loop = self._loop
+            self._client = None
+        if client is not None and loop is not None:
+            try:
+                future = asyncio.run_coroutine_threadsafe(client.close(), loop)
+                future.result(timeout=15)
+            except Exception:
+                pass
+
+    def restart(self, add_log=None):
+        if add_log:
+            self._add_log = add_log
+        token = self._token
+        if not token:
+            if self._add_log:
+                self._add_log(
+                    {
+                        "type": "error",
+                        "message": "❌ ไม่มี Token เก็บไว้ ไม่สามารถ restart ได้",
+                    }
+                )
+            return False
+        self.stop()
+        if self._add_log:
+            self._add_log("🔄 กำลังเริ่ม Bot ใหม่ (restart)...")
+        try:
+            self.start(token, self._add_log)
+        except ValueError as exc:
+            if self._add_log:
+                self._add_log({"type": "error", "message": f"❌ {exc}"})
+            return False
+        return True
+
     def start(self, token, add_log=None):
         token = (token or "").strip()
         if not token or token == PLACEHOLDER_TOKEN:
@@ -214,6 +284,7 @@ class DiscordBuilder:
 
     def _handle_ready(self):
         self._ready_event.set()
+        self._ready_at = time.time()
         if self._add_log:
             self._add_log("🟢 Bot ออนไลน์แล้ว")
 
@@ -546,7 +617,7 @@ class DiscordBuilder:
             or "กรุณาอ่านกฎทั้งหมดก่อนยืนยันตัวตน",
             color=self._parse_color(rules.get("color") or "#ED4245"),
         )
-        embed.set_footer(text="กรุณาอ่านให้ครบ แล้วกดปุ่มด้านล่างเพื่อยอมรับกฎ")
+        embed.set_footer(text=rules.get("footer") or "กรุณาอ่านให้ครบ แล้วกดปุ่มด้านล่างเพื่อยอมรับกฎ")
         rule_image = str(rules.get("image") or "").strip()
         if rule_image:
             embed.set_image(url=rule_image)
@@ -611,14 +682,14 @@ class DiscordBuilder:
             return
 
         embed = discord.Embed(
-            title="✅ ยืนยันตัวตนสำเร็จ!",
+            title="✅ ยืนยันตัวตนสำเร็จ! ยินดีต้อนรับนะคิวตี้~",
             description=(
-                f"ยินดีต้อนรับอย่างเป็นทางการ **{member.display_name}** 🎉\n\n"
-                f"คุณได้รับ Role **{role.name}** แล้ว\n\n"
-                "🎭 ลองเลือกรับ Role เพิ่มเติมได้ที่ **#🎭・roles**\n"
-                "💬 เข้ามาพูดคุยกับเพื่อน ๆ ได้เลย!"
+                f"ขอบคุณที่อ่านและยอมรับกฎของ **{guild.name}** นะ **{member.display_name}** ^-^\n"
+                f"✨ คุณได้รับ Role **{role.name}** แล้ว และได้สิทธิ์เข้าถึงเซิร์ฟเวอร์ส่วนที่เหลือ~\n\n"
+                f"💬 แวะเข้ามาคุยกับเพื่อนๆ ได้เลย~\n"
+                f"🎨 อย่าลืมแวะหยิบบทบาทสวยๆ ที่ **#🎭・roles**"
             ),
-            color=0x57F287,
+            color=0xFFEEFF,
         )
         try:
             avatar = member.display_avatar.url
@@ -1066,6 +1137,11 @@ class DiscordBuilder:
         if embed is not None:
             avatar = self._avatar_url(member)
             if avatar:
+                embed.set_author(name=str(member), icon_url=avatar)
+            icon = self._guild_icon(guild)
+            if icon:
+                embed.set_thumbnail(url=icon)
+            elif avatar:
                 embed.set_thumbnail(url=avatar)
             if guild.member_count is not None:
                 embed.add_field(
@@ -1079,13 +1155,18 @@ class DiscordBuilder:
                     value=member.joined_at.strftime("%d/%m/%Y"),
                     inline=True,
                 )
-            icon = self._guild_icon(guild)
-            embed.set_footer(
-                text=guild.name,
-                icon_url=icon if icon else discord.Embed.Empty,
-            )
+            if guild.member_count is not None:
+                embed.set_footer(
+                    text=f"{guild.name} · คุณคือสมาชิกคนที่ {guild.member_count:,} ~ ✨",
+                    icon_url=icon if icon else discord.Embed.Empty,
+                )
+            else:
+                embed.set_footer(
+                    text=guild.name,
+                    icon_url=icon if icon else discord.Embed.Empty,
+                )
             try:
-                await channel.send(f"✨ ยินดีต้อนรับ {member.mention}!", embed=embed)
+                await channel.send(f"ยินดีต้อนรับนะ, {member.display_name}! 🫶", embed=embed)
                 return
             except (discord.Forbidden, discord.HTTPException):
                 pass
@@ -1114,12 +1195,21 @@ class DiscordBuilder:
             )
             avatar = self._avatar_url(member)
             if avatar:
+                embed.set_author(name=str(member), icon_url=avatar)
+            icon = self._guild_icon(guild)
+            if icon:
+                embed.set_thumbnail(url=icon)
+            elif avatar:
                 embed.set_thumbnail(url=avatar)
             if embed_cfg.get("image"):
                 embed.set_image(url=embed_cfg.get("image"))
-            icon = self._guild_icon(guild)
+            footer = self._fill_placeholders(
+                embed_cfg.get("footer"), member, guild
+            ) or guild.name
+            if guild.member_count is not None:
+                footer = f"{guild.name} · คุณคือสมาชิกคนที่ {guild.member_count:,} ~ ✨"
             embed.set_footer(
-                text=guild.name,
+                text=footer,
                 icon_url=icon if icon else discord.Embed.Empty,
             )
         try:
@@ -1182,12 +1272,14 @@ class DiscordBuilder:
             if granted:
                 await member.remove_roles(role, reason="ปุ่มจาก Discord Server Builder")
                 await interaction.followup.send(
-                    f"ถอน Role **{role.name}** แล้ว", ephemeral=True
+                    f"✎┇ ถอนบทบาท **{role.name}** แล้ว~",
+                    ephemeral=True,
                 )
             else:
                 await member.add_roles(role, reason="ปุ่มจาก Discord Server Builder")
                 await interaction.followup.send(
-                    f"✅ ได้รับ Role **{role.name}** แล้ว!", ephemeral=True
+                    f"✧ คุณได้รับบทบาท **{role.name}** แล้วนะ! 🎉",
+                    ephemeral=True,
                 )
         except discord.Forbidden:
             await interaction.followup.send(
