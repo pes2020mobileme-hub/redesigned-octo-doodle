@@ -359,7 +359,7 @@ class DiscordBuilder:
             state["role_buttons"].pop(gid, None)
 
         if isinstance(verify_config, dict) and verify_config.get("enabled"):
-            vrole = await self._resolve_role_by_name(
+            vrole = self._resolve_role_by_name(
                 guild, verify_config.get("role") or ""
             )
             if vrole is not None:
