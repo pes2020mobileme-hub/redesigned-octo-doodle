@@ -91,10 +91,12 @@ class _BuilderClient(discord.Client):
 
     async def on_ready(self):
         self._builder._handle_ready()
+        await self._builder._post_bot_status("🟢 บอทออนไลน์แล้ว (start)", 0x57F287)
 
     async def on_disconnect(self):
         if self._builder is not None:
             self._builder._handle_disconnect()
+            await self._builder._post_bot_status("🔴 บอทออฟไลน์แล้ว (stop)", 0xED4245)
 
     async def on_member_join(self, member):
         if self._builder is not None:
@@ -347,6 +349,8 @@ class DiscordBuilder:
         log_config = payload.get("log") or {}
         ticket_config = payload.get("ticket") or {}
         verify_config = payload.get("verify") or {}
+        category_locks_config = payload.get("category_locks") or []
+        category_roles_config = payload.get("category_roles") or []
 
         needs_roles = bool(roles_config)
         if isinstance(role_buttons_config, dict) and role_buttons_config.get("enabled"):
@@ -396,6 +400,17 @@ class DiscordBuilder:
         if roles_config:
             auto_role_ids = await self._build_roles(
                 guild, roles_config, result, needs_roles, log
+            )
+
+        category_locks_config = payload.get("category_locks") or []
+        if isinstance(category_locks_config, list):
+            await self._apply_category_locks(
+                guild, roles_config, category_locks_config, result, log
+            )
+
+        if category_roles_config:
+            await self._apply_category_locks(
+                guild, roles_config, category_roles_config, result, log
             )
 
         state = self._automation()
@@ -463,7 +478,13 @@ class DiscordBuilder:
             lchannel = await self._resolve_text_channel(
                 guild, log_config.get("channel"), create=True
             )
-            state["log"][gid] = {"channel_id": str(lchannel.id)}
+            log_entry = {"channel_id": str(lchannel.id)}
+            status_name = str(log_config.get("status_channel") or "").strip()
+            if status_name:
+                schan = await self._resolve_text_channel(guild, status_name, create=True)
+                log_entry["status_channel_id"] = str(schan.id)
+            log_entry["notify_bot_status"] = bool(log_config.get("notify_bot_status"))
+            state["log"][gid] = log_entry
             result["automation"] += 1
             log(f"📝 ตั้งค่า Log Channel: #{lchannel.name}")
         else:
@@ -533,6 +554,133 @@ class DiscordBuilder:
             if rcfg.get("auto"):
                 auto_role_ids.append(role.id)
         return auto_role_ids
+
+    async def _post_bot_status(self, text, color=0x57F287, status_channel_id_hint=None):
+        if self._client is None or not self.is_ready():
+            return
+        try:
+            state = self._read_state()
+        except Exception:
+            state = {}
+        posted = 0
+        for gid, entry in (state.get("log") or {}).items():
+            if not isinstance(entry, dict):
+                continue
+            if not entry.get("notify_bot_status"):
+                continue
+            cid = str(entry.get("status_channel_id") or "").strip()
+            if not cid:
+                continue
+            guild = self._client.get_guild(int(gid))
+            if guild is None:
+                continue
+            channel = guild.get_channel(int(cid))
+            if not isinstance(channel, discord.TextChannel):
+                continue
+            embed = discord.Embed(
+                title="🤖 สถานะบอท",
+                description=text,
+                color=color,
+                timestamp=discord.utils.utcnow(),
+            )
+            try:
+                await channel.send(embed=embed)
+                posted += 1
+            except discord.Forbidden:
+                pass
+            except discord.HTTPException:
+                pass
+        return posted
+
+    async def _apply_category_locks(self, guild, roles_config, locks_config, result, log):
+        if not guild or not isinstance(locks_config, list):
+            return
+        roles_by_name = {
+            str(r.get("name", "") or "").strip(): r
+            for r in (roles_config or [])
+            if isinstance(r, dict)
+        }
+        for lock in locks_config:
+            if not isinstance(lock, dict):
+                continue
+            cat_name = str(lock.get("category") or "").strip()
+            role_name = str(lock.get("role") or "").strip()
+            if not cat_name:
+                continue
+            category = discord.utils.get(guild.categories, name=cat_name)
+            if category is None:
+                log(
+                    {
+                        "type": "error",
+                        "message": f"❌ ไม่พบหมวดหมู่ {cat_name} สำหรับล็อก",
+                    }
+                )
+                continue
+            rcfg = roles_by_name.get(role_name) if role_name else None
+            role = None
+            if rcfg is not None:
+                role = discord.utils.get(guild.roles, name=role_name)
+            if role_name and role is None:
+                log(
+                    {
+                        "type": "error",
+                        "message": f"❌ ไม่พบบทบาท {role_name} สำหรับล็อกหมวด {cat_name}",
+                    }
+                )
+                continue
+
+            allow_view = discord.PermissionOverwrite(
+                view_channel=True,
+                read_message_history=True,
+                send_messages=True,
+                embed_links=True,
+                attach_files=True,
+                add_reactions=True,
+                use_external_emojis=True,
+                use_application_commands=True,
+                connect=True,
+                speak=True,
+            )
+            overwrites = {
+                guild.default_role: discord.PermissionOverwrite(
+                    view_channel=False, read_message_history=False
+                )
+            }
+            if role is not None:
+                overwrites[role] = allow_view
+            for rcfg in roles_config or []:
+                if not isinstance(rcfg, dict):
+                    continue
+                name = str(rcfg.get("name", "") or "").strip()
+                perms = build_permissions(rcfg.get("permissions") or [])
+                if not (perms.manage_channels or perms.administrator):
+                    continue
+                staff_role = discord.utils.get(guild.roles, name=name)
+                if staff_role is not None:
+                    overwrites[staff_role] = allow_view
+            if guild.me and guild.me.top_role != guild.default_role:
+                overwrites[guild.me.top_role] = allow_view
+            if not overwrites:
+                continue
+            try:
+                await category.edit(overwrites=overwrites)
+                result["automation"] += 1
+                lock_txt = f"ต้องมี {role_name}" if role_name else "เฉพาะทีมงาน"
+                log(f"🔒 ล็อกหมวด {cat_name} ({lock_txt})")
+            except discord.Forbidden:
+                log(
+                    {
+                        "type": "error",
+                        "message": f"❌ Bot ขาดสิทธิ์ Manage Channels ล็อกหมวด {cat_name} ไม่ได้",
+                    }
+                )
+            except discord.HTTPException as exc:
+                log(
+                    {
+                        "type": "error",
+                        "message": f"❌ ล็อกหมวด {cat_name} ไม่สำเร็จ: {exc}",
+                    }
+                )
 
     async def _send_role_buttons(self, guild, channel, cfg, result, log):
         buttons = cfg.get("buttons") or []

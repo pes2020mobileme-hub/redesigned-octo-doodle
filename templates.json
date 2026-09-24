@@ -157,6 +157,23 @@
           ]
         },
         {
+          "name": "🎲 นักทดลอง",
+          "color": "#9be5f0",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak"
+          ],
+          "auto": false
+        },
+        {
           "name": "👤 Member",
           "color": "#5865F2",
           "permissions": [
@@ -245,8 +262,17 @@
       "log": {
         "enabled": true,
         "channel": "📝・modlogs",
+        "status_channel": "🤖・bot-status",
+        "notify_bot_status": true,
         "join_leave": true
-      }
+      },
+
+      "category_roles": [
+        {
+          "category": "🧪 ทดสอบระบบ",
+          "role": "🧪 นักทดลอง"
+        }
+      ]
     }
   ]
 }
