@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: discord-server-builder
+    runtime: docker
+    repo: https://github.com/pes2020mobileme-hub/redesigned-octo-doodle
+    branch: main
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: DISCORD_TOKEN
+        sync: false
+      - key: FLASK_SECRET
+        sync: false
+      - key: DISCORD_ENABLE_MEMBERS_INTENT
+        value: "1"
