@@ -913,18 +913,24 @@ class DiscordBuilder:
             return {"name": name, "type": "voice"}
 
         message = str(ch.get("message", "") or "").strip()
-        if message:
+        embed_data = ch.get("embed") or {}
+        embed = None
+        if isinstance(embed_data, dict) and embed_data.get("enabled"):
+            embed = self._build_embed(embed_data)
+
+        if message and embed is not None:
+            await channel.send(content=message, embed=embed)
+            result["messages_sent"] += 1
+            result["embeds_sent"] += 1
+            log(f"📨 ส่งข้อความ + Embed: #{name}")
+        elif message:
             await channel.send(message)
             result["messages_sent"] += 1
             log(f"📨 ส่งข้อความ: #{name}")
-
-        embed_data = ch.get("embed") or {}
-        if isinstance(embed_data, dict) and embed_data.get("enabled"):
-            embed = self._build_embed(embed_data)
-            if embed is not None:
-                await channel.send(embed=embed)
-                result["embeds_sent"] += 1
-                log(f"🎨 ส่ง Embed: #{name}")
+        elif embed is not None:
+            await channel.send(embed=embed)
+            result["embeds_sent"] += 1
+            log(f"🎨 ส่ง Embed: #{name}")
 
         return {"name": name, "type": "text"}
 
