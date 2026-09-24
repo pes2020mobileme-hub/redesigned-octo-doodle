@@ -4,7 +4,7 @@
       "id": "testbot",
       "name": "🤖 Testbot",
       "category": "Test",
-      "description": "เซิร์ฟเวอร์ประกอบรวมครบทุกฟีเจอร์ของบอท เพื่อทดสอบระบบให้ครบจบ",
+      "description": "เซิร์ฟเวอร์รวมครบทุกฟีเจอร์ของบอท เพื่อทดสอบระบบให้ครบจบ",
       "categories": [
         {
           "name": "🧪 ทดสอบระบบ",
@@ -18,7 +18,8 @@
                 "title": "🧪 ห้องทดสอบบอท",
                 "description": "พิมพ์ลองสั่งงานบอทได้เลย สังเกตว่าบอทตอบกลับสวยงามแค่ไหน 💬",
                 "color": "#57F287",
-                "footer": "Testbot · ห้องทดลองสนุกๆ"
+                "footer": "Testbot · ห้องทดลองสนุกๆ",
+                "image": "https://discord-server-builder.onrender.com/static/img/test-banner.png"
               }
             },
             {
@@ -39,7 +40,8 @@
                 "title": "🫶 เริ่มต้นที่นี่เลย",
                 "description": "แวะทักทายเพื่อนใหม่แล้วกดยืนยันตัวตนที่ **✅・verify** เพื่อปลดล็อกช่องอื่น ๆ",
                 "color": "#57F287",
-                "footer": "Testbot · อบอุ่นและเป็นกันเอง"
+                "footer": "Testbot · อบอุ่นและเป็นกันเอง",
+                "image": "https://discord-server-builder.onrender.com/static/img/welcome-banner.png"
               }
             }
           ]
@@ -56,7 +58,8 @@
                 "title": "📜 ข้อกำหนดของ Testbot",
                 "description": "1. ให้เกียรติกันทุกคนเสมอ 🤝\n2. ห้ามสแปม โฆษณา หรือลิงก์หมาๆ 🚫\n3. เนื้อหาต้องสุภาพ เหมาะสมทุกวัย 🧸\n4. อยากได้สิทธิ์เพิ่ม ต้องยืนยันตัวตนก่อน ✅",
                 "color": "#FEE75C",
-                "footer": "Testbot · อ่านจบแล้วไปยืนยันตัวตนกัน"
+                "footer": "Testbot · อ่านจบแล้วไปยืนยันตัวตนกัน",
+                "image": "https://discord-server-builder.onrender.com/static/img/rules-banner.png"
               }
             },
             {
@@ -68,7 +71,8 @@
                 "title": "🔐 ยืนยันตัวตนกันเถอะ",
                 "description": "กดปุ่ม **✅ ยืนยันตัวตน** เพื่อเริ่มขั้นตอน\nระบบจะขอให้คุณกดยอมรับข้อกำหนดก่อนปลดล็อกสิทธิ์ 🗳️",
                 "color": "#5865F2",
-                "footer": "Testbot · ระบบยืนยันตัวตน"
+                "footer": "Testbot · ระบบยืนยันตัวตน",
+                "image": "https://discord-server-builder.onrender.com/static/img/verify-banner.png"
               }
             }
           ]
@@ -85,7 +89,8 @@
                 "title": "🎨 หยิบบทบาทของคุณ",
                 "description": "กดปุ่มเพื่อรับ หรือถอดบทบาทได้ตามใจ\nเปลี่ยนได้ตลอดเวลา ไม่ต้องเกรงใจใคร ✨",
                 "color": "#EB459E",
-                "footer": "Testbot · บทบาทมากันเพียบ"
+                "footer": "Testbot · บทบาทมากันเพียบ",
+                "image": "https://discord-server-builder.onrender.com/static/img/roles-banner.png"
               }
             }
           ]
@@ -100,9 +105,10 @@
               "embed": {
                 "enabled": true,
                 "title": "🆘 เปิด Ticket ขอความช่วยเหลือ",
-                "description": "พบปัญหา หรืออยากติดต่อทีมงาน?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket** แล้วทีมงานจะรีบมาตามช่วย 🌟",
+                "description": "เจอปัญหา หรืออยากคุยกับทีมงาน?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket** แล้วทีมงานจะรีบมาตามช่วย 🌟",
                 "color": "#ED4245",
-                "footer": "Testbot · ทีมงานยินดีช่วยเสมอ"
+                "footer": "Testbot · ทีมงานยินดีช่วยเสมอ",
+                "image": "https://discord-server-builder.onrender.com/static/img/ticket-banner.png"
               }
             }
           ]
@@ -119,7 +125,8 @@
                 "title": "📝 บันทึกกิจกรรม",
                 "description": "เห็นว่ามีคนเข้าออก ก็แปลว่าเซิร์ฟเวอร์ยังมีชีวิต 😎",
                 "color": "#5865F2",
-                "footer": "Testbot · ระบบอัตโนมัติ"
+                "footer": "Testbot · ระบบอัตโนมัติ",
+                "image": "https://discord-server-builder.onrender.com/static/img/log-banner.png"
               }
             }
           ]
@@ -179,7 +186,8 @@
           "color": "#57F287",
           "footer": "Testbot · ครอบครัวของเรา 🏡",
           "author_name": "Testbot",
-          "thumbnail": "https://cdn.discordapp.com/embed/avatars/1.png"
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/1.png",
+          "image": "https://discord-server-builder.onrender.com/static/img/welcome-banner.png"
         }
       },
       "verify": {
@@ -192,13 +200,15 @@
           "title": "🔐 ยืนยันตัวตนเพื่อเข้าสู่ Testbot",
           "description": "สวัสดีเพื่อนใหม่! 🌟\nเพื่อปลดล็อกช่องทั้งหมด กรุณากดปุ่มด้านล่าง\nจากนั้นอ่านข้อกำหนดและกด**ยอมรับ** — แป๊บเดียวเสร็จ ⚡",
           "color": "#5865F2",
-          "footer": "Testbot · ระบบยืนยันตัวตน"
+          "footer": "Testbot · ระบบยืนยันตัวตน",
+          "image": "https://discord-server-builder.onrender.com/static/img/verify-banner.png"
         },
         "rules": {
           "title": "📋 ข้อตกลงก่อนเข้าร่วม",
           "description": "1. ให้เกียรติและเคารพสมาชิกทุกคน 🤝\n2. ห้ามสแปม โฆษณา หรือสแปมลิงก์ 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมายหรือไม่เหมาะสม ⚖️\n4. ปฏิบัติตามคำตัดสินของทีมงานเสมอ 🛡️",
           "agree_button": "🗳️ เอาล่ะ ฉันยอมรับข้อกำหนด",
-          "color": "#ED4245"
+          "color": "#ED4245",
+          "image": "https://discord-server-builder.onrender.com/static/img/rules-banner.png"
         }
       },
       "role_buttons": {
@@ -208,6 +218,7 @@
         "description": "กดปุ่มเพื่อรับบทบาท หรือกดซ้ำอีกทีเพื่อถอดออกได้เลย\nสลับไปมาได้ตลอด ไม่จำกัดครั้ง ⏳",
         "footer": "Testbot · บทบาท",
         "color": "#EB459E",
+        "image": "https://discord-server-builder.onrender.com/static/img/roles-banner.png",
         "buttons": [
           {
             "label": "Member",
@@ -224,6 +235,7 @@
         "description": "เจอปัญหา หรืออยากคุยกับทีมงาน?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket**\nแจ้งรายละเอียดปัญหาให้ชัด ทีมงานจะรีบจัดการเร็วขึ้น 🚀",
         "footer": "Testbot · ทีมงาน Support",
         "color": "#ED4245",
+        "image": "https://discord-server-builder.onrender.com/static/img/ticket-banner.png",
         "staff_roles": [
           "🛠️ Moderator",
           "🛡️ Admin"

@@ -495,6 +495,8 @@ class DiscordBuilder:
                 "description": cfg.get("description"),
                 "footer": cfg.get("footer"),
                 "color": cfg.get("color"),
+                "thumbnail": cfg.get("thumbnail"),
+                "image": cfg.get("image"),
             }
         )
         await channel.send(embed=embed, view=view)
@@ -545,6 +547,9 @@ class DiscordBuilder:
             color=self._parse_color(rules.get("color") or "#ED4245"),
         )
         embed.set_footer(text="กรุณาอ่านให้ครบ แล้วกดปุ่มด้านล่างเพื่อยอมรับกฎ")
+        rule_image = str(rules.get("image") or "").strip()
+        if rule_image:
+            embed.set_image(url=rule_image)
         view = discord.ui.View()
         view.add_item(
             discord.ui.Button(
@@ -661,6 +666,8 @@ class DiscordBuilder:
                 "description": cfg.get("description"),
                 "footer": cfg.get("footer"),
                 "color": cfg.get("color"),
+                "thumbnail": cfg.get("thumbnail"),
+                "image": cfg.get("image"),
             }
         )
         view = discord.ui.View()
