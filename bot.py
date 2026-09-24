@@ -1041,8 +1041,28 @@ class DiscordBuilder:
         except Exception:
             return None
 
+    @staticmethod
+    def _fill_placeholders(text, member, guild):
+        if not isinstance(text, str):
+            return text
+        return (
+            text.replace("{member_mention}", member.mention)
+            .replace("{member}", member.display_name)
+            .replace("{guild}", guild.name)
+        )
+
     async def _send_welcome_channel(self, guild, channel, member, welcome):
-        embed = self._build_embed(welcome.get("embed") or {})
+        embed_cfg = dict(welcome.get("embed") or {})
+        embed_cfg["title"] = self._fill_placeholders(
+            embed_cfg.get("title"), member, guild
+        )
+        embed_cfg["description"] = self._fill_placeholders(
+            embed_cfg.get("description"), member, guild
+        )
+        embed_cfg["footer"] = self._fill_placeholders(
+            embed_cfg.get("footer"), member, guild
+        )
+        embed = self._build_embed(embed_cfg)
         if embed is not None:
             avatar = self._avatar_url(member)
             if avatar:
@@ -1075,10 +1095,15 @@ class DiscordBuilder:
             pass
 
     async def _send_welcome_dm(self, guild, member, welcome):
-        embed = self._build_embed(welcome.get("embed") or {})
+        embed_cfg = dict(welcome.get("embed") or {})
+        embed = self._build_embed(embed_cfg)
         if embed is not None:
-            embed.title = "🎉 ยินดีต้อนรับเข้าสู่ " + guild.name + "!"
-            embed.description = (
+            embed.title = self._fill_placeholders(
+                embed_cfg.get("title"), member, guild
+            ) or f"🎉 ยินดีต้อนรับเข้าสู่ {guild.name}!"
+            embed.description = self._fill_placeholders(
+                embed_cfg.get("description"), member, guild
+            ) or (
                 f"สวัสดี **{member.display_name}**! 💫\n\n"
                 f"ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ **{guild.name}**\n"
                 "ก่อนเริ่มใช้งาน **อย่าลืม**:\n"
@@ -1090,6 +1115,8 @@ class DiscordBuilder:
             avatar = self._avatar_url(member)
             if avatar:
                 embed.set_thumbnail(url=avatar)
+            if embed_cfg.get("image"):
+                embed.set_image(url=embed_cfg.get("image"))
             icon = self._guild_icon(guild)
             embed.set_footer(
                 text=guild.name,
