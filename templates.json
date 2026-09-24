@@ -1,0 +1,2489 @@
+{
+  "templates": [
+    {
+      "id": "community",
+      "name": "👥 Community",
+      "category": "Community",
+      "description": "เซิร์ฟเวอร์ชุมชนทั่วไป",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎉 ยินดีต้อนรับเข้าสู่ Community!",
+              "embed": {
+                "enabled": true,
+                "title": "🎉 Welcome",
+                "description": "ยินดีต้อนรับสมาชิกทุกคน ขอให้สนุกกับชุมชนของเรา!",
+                "footer": "Community Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กรุณาอ่านกฎก่อนใช้งาน",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "1. ให้เกียรติสมาชิก\n2. ห้าม Spam\n3. ห้ามเนื้อหาผิดกฎ\n4. ปฏิบัติตามทีมงาน",
+                "footer": "Community Rules",
+                "color": "#ED4245"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・chat",
+              "message": "💬 เข้ามาพูดคุยกันได้เลย!",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Community Chat",
+                "description": "พูดคุย แชร์ความคิดเห็น และทำความรู้จักสมาชิก",
+                "footer": "Community",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น",
+              "embed": {
+                "enabled": true,
+                "title": "✅ Verification",
+                "description": "อ่านกฎแล้วกดยืนยันเพื่อเข้าร่วมชุมชน",
+                "footer": "Community",
+                "color": "#57F287"
+              }
+            }
+          ]
+        },
+        {
+          "name": "💡 COMMUNITY",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💡・suggestions",
+              "message": "💡 เสนอไอเดียหรือข้อเสนอแนะได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "💡 Suggestions",
+                "description": "แชร์ไอเดียเพื่อพัฒนาชุมชน",
+                "footer": "Community Team",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🖼️・media",
+              "message": "🖼️ โพสต์รูปภาพและมีมได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🖼️ Media & Memes",
+                "description": "แชร์รูปภาพ คลิป และมีมสนุก ๆ",
+                "footer": "Community",
+                "color": "#EB459E"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎮・looking-to-play",
+              "message": "🎮 หาเพื่อนเล่นเกมได้ที่นี่"
+            }
+          ]
+        },
+        {
+          "name": "🎤 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🔊・Lobby"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Gaming"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・Chill Zone"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Music Room"
+            }
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "name": "?? Admin",
+          "color": "#ED4245",
+          "permissions": [
+            "manage_channels",
+            "manage_roles",
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "ban_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "??? Moderator",
+          "color": "#57F287",
+          "permissions": [
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "? Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": true
+        },
+        {
+          "name": "?? VIP",
+          "color": "#FEE75C",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ]
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "embed": {
+          "enabled": true,
+          "title": "?? ??????????????????? Community!",
+          "description": "??????????????????????????\n???????????? rules ??????????????????????????????????",
+          "footer": "Community Team",
+          "color": "#5865F2",
+          "author_name": "Server Builder",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "?? ??????",
+              "value": "??????????????????????? #📢・announcements",
+              "inline": true
+            },
+            {
+              "name": "?? ??????",
+              "value": "?????????????????????",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "role_buttons": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "title": "?? ????? Role ??????",
+        "description": "? Member = ????????????\n?? VIP = ???????????",
+        "footer": "Role Selection",
+        "color": "#5865F2",
+        "buttons": [
+          {
+            "label": "Member",
+            "emoji": "?",
+            "role": "? Member"
+          },
+          {
+            "label": "VIP",
+            "emoji": "??",
+            "role": "?? VIP"
+          }
+        ]
+      },
+      "log": {
+        "enabled": true,
+        "channel": "modlogs",
+        "join_leave": true
+      },
+      "ticket": {
+        "enabled": true,
+        "channel": "support",
+        "category": "?? TICKETS",
+        "title": "??? Ticket Support",
+        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
+        "footer": "Support Team",
+        "color": "#ED4245",
+        "staff_roles": [
+          "??? Moderator",
+          "?? Admin"
+        ]
+      }
+    },
+    {
+      "id": "gaming",
+      "name": "🎮 Gaming",
+      "category": "Gaming",
+      "description": "เซิร์ฟเวอร์เกม",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎮 ยินดีต้อนรับสู่ Gaming Server!",
+              "embed": {
+                "enabled": true,
+                "title": "🎮 Welcome Gamers",
+                "description": "ติดตามประกาศ กิจกรรม และข่าวสารเกม",
+                "footer": "Gaming Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กรุณาอ่านกฎก่อนใช้งาน",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "เล่นให้สนุก แต่ห้ามหยาบคายหรือโกง",
+                "footer": "Gaming Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎮 GAMING",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・game-news",
+              "message": "🎮 ข่าวสารเกมและกิจกรรม",
+              "embed": {
+                "enabled": true,
+                "title": "🎮 Game News",
+                "description": "ติดตามข่าวสารเกมและกิจกรรมล่าสุด",
+                "footer": "Gaming",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・game-chat",
+              "message": "🎮 พูดคุยเรื่องเกมกันได้เลย!",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Game Chat",
+                "description": "หาเพื่อนเล่นเกม แชร์เทคนิค และพูดคุยเรื่องเกม",
+                "footer": "Gaming Community",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🕹️・looking-for-team",
+              "message": "🕹️ หาเพื่อนร่วมทีมได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🕹️ Looking For Team",
+                "description": "นัดเล่นเกม หาทีม และจับคู่เพื่อน",
+                "footer": "Gaming",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏆・tournaments",
+              "message": "🏆 ห้องสำหรับการแข่งขัน",
+              "embed": {
+                "enabled": true,
+                "title": "🏆 Tournaments",
+                "description": "ติดตามการแข่งขันและกิจกรรมต่าง ๆ",
+                "footer": "Tournament Team",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎁・giveaways",
+              "message": "🎁 มีของแจกแล้ว มาลุ้นกัน!",
+              "embed": {
+                "enabled": true,
+                "title": "🎁 Giveaways",
+                "description": "ร่วมลุ้นของรางวัลและกิจกรรมแจกของ",
+                "footer": "Gaming",
+                "color": "#EB459E"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💡・suggestions",
+              "message": "💡 เสนอไอเดียพัฒนาองค์กร"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎮・Squad 1"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Squad 2"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Squad 3"
+            },
+            {
+              "type": "voice",
+              "name": "🔊・Lobby"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Music"
+            }
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "name": "?? Admin",
+          "color": "#ED4245",
+          "permissions": [
+            "manage_channels",
+            "manage_roles",
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "ban_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "??? Moderator",
+          "color": "#57F287",
+          "permissions": [
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "? Player",
+          "color": "#F0B232",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": true
+        },
+        {
+          "name": "?? VIP",
+          "color": "#FEE75C",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ]
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "📢・announcements",
+        "embed": {
+          "enabled": true,
+          "title": "?? ??????????????? Gaming Server!",
+          "description": "???????????????????????????\n??????????????????????????????????????",
+          "footer": "Gaming Team",
+          "color": "#FEE75C",
+          "author_name": "Server Builder",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "?? ??????",
+              "value": "??????????????????????? #📢・announcements",
+              "inline": true
+            },
+            {
+              "name": "?? ??????",
+              "value": "?????????????????????",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "role_buttons": {
+        "enabled": true,
+        "channel": "📢・announcements",
+        "title": "?? ????? Role ??????",
+        "description": "? Player = ?????????????\n?? VIP = ???????????",
+        "footer": "Role Selection",
+        "color": "#F0B232",
+        "buttons": [
+          {
+            "label": "Player",
+            "emoji": "?",
+            "role": "? Player"
+          },
+          {
+            "label": "VIP",
+            "emoji": "??",
+            "role": "?? VIP"
+          }
+        ]
+      },
+      "log": {
+        "enabled": true,
+        "channel": "modlogs",
+        "join_leave": true
+      },
+      "ticket": {
+        "enabled": true,
+        "channel": "support",
+        "category": "?? TICKETS",
+        "title": "??? Ticket Support",
+        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
+        "footer": "Support Team",
+        "color": "#ED4245",
+        "staff_roles": [
+          "??? Moderator",
+          "?? Admin"
+        ]
+      }
+    },
+    {
+      "id": "shop",
+      "name": "🛒 Online Shop",
+      "category": "Shop",
+      "description": "ร้านค้าออนไลน์",
+      "categories": [
+        {
+          "name": "🛒 SHOP",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🛒 ยินดีต้อนรับสู่ร้านค้าของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "🛒 Welcome To Our Shop",
+                "description": "ติดตามสินค้า โปรโมชั่น และข่าวสารของร้าน",
+                "footer": "Official Shop",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🛍️・products",
+              "message": "🛍️ รายการสินค้า",
+              "embed": {
+                "enabled": true,
+                "title": "🛍️ Products",
+                "description": "ดูรายละเอียดสินค้าและบริการทั้งหมด",
+                "footer": "Shop",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🔥・promotions",
+              "message": "🔥 โปรโมชั่นพิเศษ",
+              "embed": {
+                "enabled": true,
+                "title": "🔥 Promotions",
+                "description": "ติดตามโปรโมชั่นและข้อเสนอพิเศษ",
+                "footer": "Promotion",
+                "color": "#ED4245"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📦・pre-order",
+              "message": "📦 สินค้าพรีออเดอร์"
+            },
+            {
+              "type": "text",
+              "name": "⭐・reviews",
+              "message": "⭐ รีวิวจากลูกค้าจริง",
+              "embed": {
+                "enabled": true,
+                "title": "⭐ Customer Reviews",
+                "description": "รีวิวและความคิดเห็นจากลูกค้าที่สั่งซื้อ",
+                "footer": "Shop Reviews",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・general-chat",
+              "message": "💬 พูดคุยเรื่องสินค้าได้ที่นี่"
+            }
+          ]
+        },
+        {
+          "name": "🎧 SUPPORT",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🎫・support",
+              "message": "🎫 ต้องการความช่วยเหลือ ติดต่อทีมงานได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🎫 Customer Support",
+                "description": "ทีมงานพร้อมช่วยเหลือเกี่ยวกับสินค้าและบริการ",
+                "footer": "Support Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "❓・faq",
+              "message": "❓ คำถามที่พบบ่อย",
+              "embed": {
+                "enabled": true,
+                "title": "❓ FAQ",
+                "description": "รวมคำถามและคำตอบที่พบบ่อย",
+                "footer": "Support",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📋・bug-report",
+              "message": "📋 แจ้งปัญหาเกี่ยวกับเว็บไซต์"
+            }
+          ]
+        },
+        {
+          "name": "🎧 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Support Call"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Lounge"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "support",
+      "name": "🎧 Support Center",
+      "category": "Support",
+      "description": "ศูนย์ช่วยเหลือ",
+      "categories": [
+        {
+          "name": "🎧 SUPPORT",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・information",
+              "message": "🎧 ยินดีต้อนรับสู่ศูนย์ช่วยเหลือ",
+              "embed": {
+                "enabled": true,
+                "title": "🎧 Support Center",
+                "description": "หากพบปัญหาหรือต้องการความช่วยเหลือ ติดต่อทีมงานได้",
+                "footer": "Support Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "❓・faq",
+              "message": "❓ คำถามที่พบบ่อย",
+              "embed": {
+                "enabled": true,
+                "title": "❓ FAQ",
+                "description": "รวมคำถามและคำตอบที่พบบ่อย",
+                "footer": "FAQ",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎫・create-ticket",
+              "message": "🎫 หากต้องการความช่วยเหลือ กรุณาสร้าง Ticket",
+              "embed": {
+                "enabled": true,
+                "title": "🎫 Create Ticket",
+                "description": "ติดต่อทีมงานเพื่อขอความช่วยเหลือ",
+                "footer": "Support Team",
+                "color": "#ED4245"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・general-chat",
+              "message": "💬 พูดคุยทั่วไป"
+            },
+            {
+              "type": "text",
+              "name": "📋・bug-report",
+              "message": "📋 แจ้งบั๊กหรือปัญหาที่พบ"
+            }
+          ]
+        },
+        {
+          "name": "📚 KNOWLEDGE",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📖・articles",
+              "message": "📖 บทความช่วยเหลือและคู่มือ"
+            },
+            {
+              "type": "text",
+              "name": "🎥・video-guides",
+              "message": "🎥 คลิปสอนการใช้งาน"
+            },
+            {
+              "type": "text",
+              "name": "💡・suggestions",
+              "message": "💡 เสนอแนะวิธีพัฒนาระบบ"
+            }
+          ]
+        },
+        {
+          "name": "🎙️ VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Support"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・Lobby"
+            }
+          ]
+        }
+      ],
+      "roles": [
+        {
+          "name": "?? Admin",
+          "color": "#ED4245",
+          "permissions": [
+            "manage_channels",
+            "manage_roles",
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "ban_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "??? Moderator",
+          "color": "#57F287",
+          "permissions": [
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "? Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": true
+        },
+        {
+          "name": "?? VIP",
+          "color": "#FEE75C",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ]
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "📢・information",
+        "embed": {
+          "enabled": true,
+          "title": "?? ??????????????? Support!",
+          "description": "???????????????????????????\n????????????????????????????????????????",
+          "footer": "Support Team",
+          "color": "#5865F2",
+          "author_name": "Server Builder",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "?? ??????",
+              "value": "??????????????????????? #📢・information",
+              "inline": true
+            },
+            {
+              "name": "?? ??????",
+              "value": "?????????????????????",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "role_buttons": {
+        "enabled": true,
+        "channel": "📢・information",
+        "title": "?? ????? Role ??????",
+        "description": "? Member = ??????\n?? VIP = ???????????",
+        "footer": "Role Selection",
+        "color": "#5865F2",
+        "buttons": [
+          {
+            "label": "Member",
+            "emoji": "?",
+            "role": "? Member"
+          },
+          {
+            "label": "VIP",
+            "emoji": "??",
+            "role": "?? VIP"
+          }
+        ]
+      },
+      "log": {
+        "enabled": true,
+        "channel": "modlogs",
+        "join_leave": true
+      },
+      "ticket": {
+        "enabled": true,
+        "channel": "support",
+        "category": "?? TICKETS",
+        "title": "??? Ticket Support",
+        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
+        "footer": "Support Team",
+        "color": "#ED4245",
+        "staff_roles": [
+          "??? Moderator",
+          "?? Admin"
+        ]
+      }
+    },
+    {
+      "id": "friends",
+      "name": "👨‍👩‍👧‍👦 Friends",
+      "category": "Community",
+      "description": "กลุ่มเพื่อน",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "👋 สวัสดีเพื่อนทุกคน!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 Welcome Friends",
+                "description": "พื้นที่พูดคุยของกลุ่มเพื่อน",
+                "footer": "Friends",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาง่าย ๆ แค่มีน้ำใจกัน"
+            }
+          ]
+        },
+        {
+          "name": "👥 FRIENDS",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・chat",
+              "message": "👋 สวัสดีเพื่อน ๆ!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 General Chat",
+                "description": "พื้นที่พูดคุยของกลุ่มเพื่อน",
+                "footer": "Friends",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📸・photos",
+              "message": "📸 แชร์รูปกันได้เลย!",
+              "embed": {
+                "enabled": true,
+                "title": "📸 Photos",
+                "description": "แชร์รูปภาพและความทรงจำ",
+                "footer": "Friends",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎮・games",
+              "message": "🎮 นัดเล่นเกมกันที่นี่!",
+              "embed": {
+                "enabled": true,
+                "title": "🎮 Games",
+                "description": "หาเพื่อนเล่นเกมและนัดเวลา",
+                "footer": "Friends Gaming",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎉・memes",
+              "message": "🎉 แชร์มีมป่วน ๆ ได้เลย"
+            },
+            {
+              "type": "text",
+              "name": "🎵・music",
+              "message": "🎵 แชร์เพลงโปรดของเพื่อน ๆ"
+            }
+          ]
+        },
+        {
+          "name": "🔊 LOUNGE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Chill"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Music"
+            },
+            {
+              "type": "voice",
+              "name": "🕹️・Gaming"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "name": "📚 Education",
+      "category": "Education",
+      "description": "ห้องเรียนและการศึกษา",
+      "categories": [
+        {
+          "name": "📚 CLASSROOM",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "📢 ประกาศจากผู้สอน",
+              "embed": {
+                "enabled": true,
+                "title": "📢 Announcements",
+                "description": "ติดตามประกาศ ตารางเรียน และข้อมูลสำคัญ",
+                "footer": "Education Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📖・resources",
+              "message": "📖 เอกสารและสื่อการเรียน",
+              "embed": {
+                "enabled": true,
+                "title": "📖 Resources",
+                "description": "รวมเอกสารและสื่อการเรียนสำหรับสมาชิก",
+                "footer": "Education",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・discussion",
+              "message": "💬 ห้องพูดคุยเรื่องการเรียน",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Discussion",
+                "description": "ถามตอบและแลกเปลี่ยนความรู้",
+                "footer": "Education",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📝・assignments",
+              "message": "📝 ส่งงานและการบ้าน"
+            },
+            {
+              "type": "text",
+              "name": "❓・quiz",
+              "message": "❓ แบบฝึกหัดและทดสอบ"
+            },
+            {
+              "type": "text",
+              "name": "🏫・general",
+              "message": "🏫 ห้องพบปะพูดคุยทั่วไป"
+            }
+          ]
+        },
+        {
+          "name": "🎓 STUDY ROOM",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "📖・Study Room"
+            },
+            {
+              "type": "voice",
+              "name": "🤝・Group Study"
+            },
+            {
+              "type": "voice",
+              "name": "🔇・Focus Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "developer",
+      "name": "💻 Developer",
+      "category": "Technology",
+      "description": "ชุมชนนักพัฒนา",
+      "categories": [
+        {
+          "name": "💻 DEVELOPMENT",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・dev-news",
+              "message": "💻 ข่าวสารสำหรับนักพัฒนา",
+              "embed": {
+                "enabled": true,
+                "title": "💻 Developer News",
+                "description": "ข่าวสารและประกาศด้านการพัฒนา",
+                "footer": "Developer Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・general-chat",
+              "message": "💬 พูดคุยเรื่องโปรแกรมทั่วไป"
+            },
+            {
+              "type": "text",
+              "name": "🐍・python",
+              "message": "🐍 พูดคุยเกี่ยวกับ Python",
+              "embed": {
+                "enabled": true,
+                "title": "🐍 Python",
+                "description": "ถามตอบ แชร์โค้ด และเรียนรู้ Python",
+                "footer": "Developer Community",
+                "color": "#3776AB"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🌐・web-dev",
+              "message": "🌐 Web Development",
+              "embed": {
+                "enabled": true,
+                "title": "🌐 Web Development",
+                "description": "พูดคุยเรื่อง HTML, CSS, JavaScript และ Framework",
+                "footer": "Developer",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🐛・bug-report",
+              "message": "🐛 แจ้งบั๊กที่เจอระหว่างพัฒนา"
+            },
+            {
+              "type": "text",
+              "name": "🤝・showcase",
+              "message": "🤝 โชว์ผลงานและโปรเจกต์ของตัวเอง"
+            },
+            {
+              "type": "text",
+              "name": "📚・learning-resources",
+              "message": "📚 แหล่งเรียนรู้ และคอร์สแนะนำ"
+            }
+          ]
+        },
+        {
+          "name": "🔊 HANGOUT",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Dev Lounge"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Focus Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "music",
+      "name": "🎵 Music",
+      "category": "Entertainment",
+      "description": "เซิร์ฟเวอร์เพลง",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎵 ยินดีต้อนรับเข้าสู่ Music Server!",
+              "embed": {
+                "enabled": true,
+                "title": "🎵 Welcome",
+                "description": "ติดตามข่าวเพลงและกิจกรรมของชุมชน",
+                "footer": "Music Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในการเข้าร่วม"
+            }
+          ]
+        },
+        {
+          "name": "🎵 MUSIC",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・music-news",
+              "message": "🎵 ข่าวสารและเพลงใหม่",
+              "embed": {
+                "enabled": true,
+                "title": "🎵 Music News",
+                "description": "พูดคุยเกี่ยวกับเพลง ศิลปิน และอัลบั้มใหม่",
+                "footer": "Music Community",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・music-chat",
+              "message": "🎧 มาแชร์เพลงโปรดกัน!",
+              "embed": {
+                "enabled": true,
+                "title": "🎧 Music Chat",
+                "description": "แชร์เพลงและพูดคุยเรื่องดนตรี",
+                "footer": "Music",
+                "color": "#EB459E"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎶・song-requests",
+              "message": "🎶 ขอเพลงได้ที่นี่!"
+            },
+            {
+              "type": "text",
+              "name": "🎵・playlists",
+              "message": "🎵 แชร์เพลย์ลิสต์สุดโปรด"
+            },
+            {
+              "type": "text",
+              "name": "💡・suggestions",
+              "message": "💡 เสนอเพลงหรือกิจกรรม"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎵・Music Room"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Listening Room"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・Karaoke"
+            },
+            {
+              "type": "voice",
+              "name": "🎵・Party Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "creator",
+      "name": "🎬 Content Creator",
+      "category": "Creator",
+      "description": "YouTuber / Streamer / Creator",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎬 ติดตามข่าวสารจาก Creator",
+              "embed": {
+                "enabled": true,
+                "title": "🎬 Creator News",
+                "description": "ติดตามคลิปใหม่ Live และกิจกรรม",
+                "footer": "Creator Team",
+                "color": "#FF0000"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กรุณาอ่านกฎก่อนใช้งาน",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "ขอความร่วมมือสมาชิกทุกคนปฏิบัติตามกฎ",
+                "footer": "Creator Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎬 CREATOR",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📺・videos",
+              "message": "📺 คลิปใหม่มาแล้ว!",
+              "embed": {
+                "enabled": true,
+                "title": "📺 New Video",
+                "description": "ติดตามวิดีโอและผลงานล่าสุด",
+                "footer": "Creator",
+                "color": "#FF0000"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・community",
+              "message": "💬 พูดคุยกับ Community",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Community",
+                "description": "พูดคุยและแลกเปลี่ยนความคิดเห็น",
+                "footer": "Creator Community",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🔔・notifications",
+              "message": "🔔 แจ้งเตือนอัปโหลดและไลฟ์",
+              "embed": {
+                "enabled": true,
+                "title": "🔔 Notifications",
+                "description": "รับการแจ้งเตือนเมื่อมีคลิปหรือไลฟ์ใหม่",
+                "footer": "Creator",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🤝・collab",
+              "message": "🤝 หาเพื่อนทำคอนเทนต์และรวมงานกันได้ที่นี่"
+            },
+            {
+              "type": "text",
+              "name": "🎯・suggestions",
+              "message": "🎯 แนะนำไอเดียคอนเทนต์ให้เราด้วย!"
+            }
+          ]
+        },
+        {
+          "name": "🎤 STREAMER",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Voice Chat"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Stream Team"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Gaming Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "esports",
+      "name": "🏆 Esports",
+      "category": "Gaming",
+      "description": "ทีมแข่งขัน Esports",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🏆 ยินดีต้อนรับเข้าสู่ทีม!",
+              "embed": {
+                "enabled": true,
+                "title": "🏆 Welcome Champions",
+                "description": "ติดตามข่าวสารของทีมและตารางแข่ง",
+                "footer": "Esports Team",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กฎการเข้าร่วมทีม",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Team Rules",
+                "description": "ปฏิบัติตามกฎเพื่อทีมที่แข็งแกร่ง",
+                "footer": "Esports Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🏆 ESPORTS",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・team-news",
+              "message": "🏆 ข่าวสารทีม",
+              "embed": {
+                "enabled": true,
+                "title": "🏆 Team News",
+                "description": "ข่าวสาร ตารางแข่ง และประกาศของทีม",
+                "footer": "Esports Team",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📅・schedule",
+              "message": "📅 ตารางการแข่งขัน",
+              "embed": {
+                "enabled": true,
+                "title": "📅 Match Schedule",
+                "description": "ติดตามตารางการแข่งขันของทีม",
+                "footer": "Esports",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💬・team-chat",
+              "message": "💬 ห้องพูดคุยของทีม",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Team Chat",
+                "description": "พื้นที่พูดคุยสำหรับสมาชิกทีม",
+                "footer": "Team",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🧩・scrims",
+              "message": "🧩 นัดซ้อมแมตช์ระหว่างทีม"
+            },
+            {
+              "type": "text",
+              "name": "📊・stats",
+              "message": "📊 สถิติและผลงานของทีม"
+            },
+            {
+              "type": "text",
+              "name": "🎥・replays",
+              "message": "🎥 คลิปไฮไลท์และการวิเคราะห์เกม"
+            }
+          ]
+        },
+        {
+          "name": "🎤 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎮・Team Room"
+            },
+            {
+              "type": "voice",
+              "name": "🏆・Match Room"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・Coach Room"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Focus"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fps",
+      "name": "🎯 FPS Gaming",
+      "category": "Gaming",
+      "description": "Valorant / CS:GO / Call of Duty",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎯 ยินดีต้อนรับเข้าสู่ FPS Server!",
+              "embed": {
+                "enabled": true,
+                "title": "🎯 Welcome FPS Players",
+                "description": "ติดตามประกาศ ทัวร์นาเมนต์ และกิจกรรม",
+                "footer": "FPS Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กฎสำคัญ: ห้ามโกงเด็ดขาด",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "1. ห้ามใช้โปรแกรมโกง\n2. ห้ามหยาบคาย\n3. เล่นให้สนุกและแฟร์",
+                "footer": "FPS Rules",
+                "color": "#ED4245"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ กดยืนยันตัวเพื่อเข้าสู่ช่องอื่น ๆ"
+            }
+          ]
+        },
+        {
+          "name": "🔫 RANKED",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・match-chat",
+              "message": "🔫 พูดคุยเรื่องแมตช์และเลเวล",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Match Chat",
+                "description": "แชร์ประสบการณ์ในการแข่งและเทคนิค",
+                "footer": "FPS",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏅・rank-lookup",
+              "message": "🏅 ตรวจและอัปเดตแรงก์"
+            },
+            {
+              "type": "text",
+              "name": "🔥・highlights",
+              "message": "🔥 แชร์ไฮไลท์คลิปสุดสวย",
+              "embed": {
+                "enabled": true,
+                "title": "🔥 Highlights",
+                "description": "โพสต์คลิปไฮไลท์และพลิกเกมสุดมันส์",
+                "footer": "FPS Community",
+                "color": "#FEE75C"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎮 SQUADS",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🕹️・looking-to-play",
+              "message": "🕹️ หาคู่เล่นและทีมได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🕹️ Looking To Play",
+                "description": "โพสต์หาเพื่อนหรือทีมสำหรับเล่นเคียงข้างระเบียบ",
+                "footer": "FPS",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎯・squad-up",
+              "message": "🎯 รวมพลทีมสร้างสควอด"
+            },
+            {
+              "type": "text",
+              "name": "🏆・tournaments",
+              "message": "🏆 ประกาศทัวร์นาเมนต์และสมัครแข่ง"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎮・Squad 1"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Squad 2"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Squad 3"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・Squad 4"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・Coach"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・AFK"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "minecraft",
+      "name": "🐧 Minecraft",
+      "category": "Gaming",
+      "description": "เซิร์ฟเวอร์ Minecraft",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🐧 ยินดีต้อนรับสู่ Minecraft Server!",
+              "embed": {
+                "enabled": true,
+                "title": "⛏️ Welcome Crafters",
+                "description": "ติดตามข่าวสาร อัปเดต และกิจกรรม",
+                "footer": "MC Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 อ่านกฎก่อนเข้าเล่น",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "1. ห้าม Grief\n2. ห้ามขโมยของ\n3. มีน้ำใจต่อผู้เล่นอื่น",
+                "footer": "MC Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "⛏️ SURVIVAL",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・general",
+              "message": "💬 พูดคุยเรื่องเซิร์ฟเวอร์",
+              "embed": {
+                "enabled": true,
+                "title": "💬 General Chat",
+                "description": "คุยกับเพื่อนนักเล่นในเซิร์ฟเวอร์",
+                "footer": "Minecraft",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🛠️・builds",
+              "message": "🛠️ โชว์ผลงานสิ่งก่อสร้าง",
+              "embed": {
+                "enabled": true,
+                "title": "🗿 Your Builds",
+                "description": "มาอวดสิ่งก่อสร้างและไอเดียสุดเจ๋ง",
+                "footer": "Survival",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📸・screenshots",
+              "message": "📸 แชร์ภาพในเกม"
+            },
+            {
+              "type": "text",
+              "name": "🎁・giveaways",
+              "message": "🎁 กิจกรรมแจกของรางวัลในเกม"
+            }
+          ]
+        },
+        {
+          "name": "🛒 ECONOMY",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🛒・shop",
+              "message": "🛒 ซื้อขายไอเทมระหว่างผู้เล่น",
+              "embed": {
+                "enabled": true,
+                "title": "🛒 Player Shop",
+                "description": "ประกาศซื้อขาย แลกเปลี่ยนไอเทม",
+                "footer": "Economy",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🤝・trades",
+              "message": "🤝 นัดแลกของระหว่างผู้เล่น"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Lobby"
+            },
+            {
+              "type": "voice",
+              "name": "🎤・SMP"
+            },
+            {
+              "type": "voice",
+              "name": "🎮・PVP"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sports",
+      "name": "⚽ Sports Club",
+      "category": "Sports",
+      "description": "สโมสรกีฬาและแฟนคลับ",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "⚽ ยินดีต้อนรับเข้าสู่ Sports Club!",
+              "embed": {
+                "enabled": true,
+                "title": "⚽ Welcome Fans",
+                "description": "ติดตามข่าวสารการแข่งขันและกิจกรรม",
+                "footer": "Sports Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในคลับ",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Club Rules",
+                "description": "เล่นกีฬามา แต่ใจนักกีฬาต้องมี",
+                "footer": "Sports Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🏟️ CLUB",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・general-chat",
+              "message": "💬 พูดคุยเรื่องกีฬากันได้เลย",
+              "embed": {
+                "enabled": true,
+                "title": "💬 General Chat",
+                "description": "คุยเรื่องทีมโปรดและนักกีฬาคนโปรด",
+                "footer": "Sports Club",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏆・match-results",
+              "message": "🏆 สรุปผลการแข่งขัน",
+              "embed": {
+                "enabled": true,
+                "title": "🏆 Match Results",
+                "description": "อัปเดตผลการแข่งขันรายสัปดาห์",
+                "footer": "Match Reports",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "⚽・football",
+              "message": "⚽ ห้องพูดคุยฟุตบอล",
+              "embed": {
+                "enabled": true,
+                "title": "⚽ Football Talk",
+                "description": "คุยเรื่องบอลลีกโปรดและฟอร์มนักเตะ",
+                "footer": "Football",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏀・basketball",
+              "message": "🏀 ห้องพูดคุยบาสเกตบอล"
+            },
+            {
+              "type": "text",
+              "name": "🏐・volleyball",
+              "message": "🏐 ห้องพูดคุยวอลเลย์บอล"
+            }
+          ]
+        },
+        {
+          "name": "📺 WATCH",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📺・live-matches",
+              "message": "📺 แชร์ลิงก์ดูบอลสด",
+              "embed": {
+                "enabled": true,
+                "title": "📺 Live Matches",
+                "description": "นัดดูบอลสดพร้อมแฟน ๆ",
+                "footer": "Sports",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎥・highlights",
+              "message": "🎥 คลิปไฮไลท์การแข่งขัน"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Pre-Match"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Post-Match"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "name": "🍔 Food & Cooking",
+      "category": "Lifestyle",
+      "description": "นักกินและสายทำอาหาร",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🍔 ยินดีต้อนรับเข้าสู่ Food Community!",
+              "embed": {
+                "enabled": true,
+                "title": "🍔 Welcome Foodies",
+                "description": "รวบรวมเมนูเด็ด สูตรอาหาร และร้านโปรด",
+                "footer": "Food Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในคอมมูนิตี้"
+            }
+          ]
+        },
+        {
+          "name": "🍳 COOKING",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・food-chat",
+              "message": "💬 เม้าท์มอยเรื่องอาหารกันได้เลย",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Food Chat",
+                "description": "คุยเรื่องร้านอาหาร มุมอร่อย และสูตรเด็ด",
+                "footer": "Food",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📖・recipes",
+              "message": "📖 แชร์สูตรอาหาร",
+              "embed": {
+                "enabled": true,
+                "title": "📖 Recipes",
+                "description": "โพสต์สูตรอาหารพร้อมขั้นตอน",
+                "footer": "Cooking",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🍜・asian-food",
+              "message": "🍜 ห้องอาหารเอเชีย"
+            },
+            {
+              "type": "text",
+              "name": "🍰・desserts",
+              "message": "🍰 ของหวานและเบเกอรี่"
+            },
+            {
+              "type": "text",
+              "name": "📸・food-photos",
+              "message": "📸 แชร์รูปอาหารน่ากิน",
+              "embed": {
+                "enabled": true,
+                "title": "📸 Food Photos",
+                "description": "เปิดภาพเมนูโปรดแล้วมาน้ำลายไหลกัน",
+                "footer": "Foodie",
+                "color": "#EB459E"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🛍️ SHOP & REVIEW",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🛒・order-food",
+              "message": "🛒 กลุ่มออเดอร์อาหาร"
+            },
+            {
+              "type": "text",
+              "name": "⭐・reviews",
+              "message": "⭐ รีวิวร้านอาหาร"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Cooking Together"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Foodies"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pets",
+      "name": "🐱 Pet Lovers",
+      "category": "Lifestyle",
+      "description": "คนรักสัตว์เลี้ยง",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🐱 ยินดีต้อนรับคนรักสัตว์!",
+              "embed": {
+                "enabled": true,
+                "title": "🐾 Welcome Pet Lovers",
+                "description": "รวมพลคนรักสัตว์ สายทาสแมวและหมาทุกสายพันธุ์",
+                "footer": "Pet Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในคอมมูนิตี้"
+            }
+          ]
+        },
+        {
+          "name": "🐾 COMMUNITY",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・pet-chat",
+              "message": "💬 พูดคุยเรื่องน้อง ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Pet Chat",
+                "description": "คุยเรื่องการเลี้ยงดูและพฤติกรรมน้อง ๆ",
+                "footer": "Pet Lovers",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📸・pet-photos",
+              "message": "📸 แชร์รูปลูกสัตว์สุดน่ารัก",
+              "embed": {
+                "enabled": true,
+                "title": "📸 Pet Photos",
+                "description": "มาอวดความน่ารักของน้อง ๆ กัน",
+                "footer": "Pet",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏡・adoptions",
+              "message": "🏡 หาบ้านให้น้องหมาหรือแมวจร"
+            }
+          ]
+        },
+        {
+          "name": "🐶 BREEDS",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🐶・dog-lovers",
+              "message": "🐶 สายคนรักน้องหมา"
+            },
+            {
+              "type": "text",
+              "name": "🐱・cat-lovers",
+              "message": "🐱 สายคนรักน้องแมว"
+            },
+            {
+              "type": "text",
+              "name": "🐹・other-pets",
+              "message": "🐹 หนูแฮมสเตอร์ กระต่าย นก ปลา และอีกมากมาย"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Pet Voice"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anime",
+      "name": "🎲 Anime & Manga",
+      "category": "Entertainment",
+      "description": "ชุมชนการ์ตูนและมังงะ",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎌 ยินดีต้อนรับเข้าสู่ Anime Server!",
+              "embed": {
+                "enabled": true,
+                "title": "🎌 Welcome Weebs",
+                "description": "รวมพลคนดูการ์ตูน อ่านมังงะ และแฟนฟิก",
+                "footer": "Anime Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กฎสำคัญในเซิร์ฟเวอร์",
+              "embed": {
+                "enabled": true,
+                "title": "📜 Server Rules",
+                "description": "1. ห้ามสปอยล์เนื้อเรื่อง\n2. ให้เกียรติกัน\n3. ห้ามแย่งดราม่า",
+                "footer": "Anime Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎌 ANIME",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・anime-chat",
+              "message": "💬 คุยเรื่องการ์ตูนได้ทุกเรื่องยังไงก็ได้",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Anime Chat",
+                "description": "พูดคุยแนะนำการ์ตูนและอ่านมังงะ",
+                "footer": "Anime",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📺・episode-discussion",
+              "message": "📺 ห้องคุยตอนล่าสุด (ระวังสปอยล์ในนี้ได้)"
+            },
+            {
+              "type": "text",
+              "name": "📚・manga-reader",
+              "message": "📚 แนะนำและพูดคุยเรื่องมังงะ"
+            },
+            {
+              "type": "text",
+              "name": "🖼️・fanart",
+              "message": "🖼️ ชมและแชร์ภาพแฟนอาร์ต",
+              "embed": {
+                "enabled": true,
+                "title": "🖼️ Fanart",
+                "description": "ผลงานวาดการ์ตูนและแฟนอาร์ตจากสมาชิก",
+                "footer": "Anime Community",
+                "color": "#EB459E"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎮 GAMING",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🎮・gacha-games",
+              "message": "🎮 คุยเกมกาชาบนมือถือ"
+            },
+            {
+              "type": "text",
+              "name": "🎴・anime-quiz",
+              "message": "🎴 ทดสอบความรู้คนดูหนัง"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Anime Voice"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Wallpaper Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crypto",
+      "name": "🚀 Crypto & Trading",
+      "category": "Finance",
+      "description": "เทรดและลงทุนคริปโต",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🚀 ยินดีต้อนรับเข้าสู่ Crypto Community!",
+              "embed": {
+                "enabled": true,
+                "title": "🚀 Welcome Traders",
+                "description": "แลกเปลี่ยนความรู้เรื่องเทรดและลงทุน",
+                "footer": "Crypto Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 คำเตือน: เสี่ยงต่อการลงทุน",
+              "embed": {
+                "enabled": true,
+                "title": "⚠️ Trading Disclaimer",
+                "description": "การเทรดมีความเสี่ยง โปรดศึกษาและรับความเสี่ยงเอง",
+                "footer": "Risk Notice",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "📈 TRADING",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・market-chat",
+              "message": "💬 คุยเรื่องตลาดและข่าว",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Market Chat",
+                "description": "พูดคุยวิเคราะห์ตลาดคริปโตและหุ้น",
+                "footer": "Trading",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🔎・chart-analysis",
+              "message": "🔎 วิเคราะห์กราฟและเทคนิค",
+              "embed": {
+                "enabled": true,
+                "title": "🔎 Chart Analysis",
+                "description": "แชร์มุมมองทางเทคนิคและแนวรับแนวต้าน",
+                "footer": "Analysts",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🔥・signals",
+              "message": "🔥 ห้องสัญญาณเทรด (ใช้วิจารณญาณ)"
+            },
+            {
+              "type": "text",
+              "name": "📊・portfolio",
+              "message": "📊 แชร์ผลพอร์ตการลงทุน"
+            }
+          ]
+        },
+        {
+          "name": "🪙 COINS",
+          "channels": [
+            {
+              "type": "text",
+              "name": "₿・bitcoin",
+              "message": "₿ คุยเรื่อง Bitcoin"
+            },
+            {
+              "type": "text",
+              "name": "🔵・ethereum",
+              "message": "🔵 คุยเรื่อง Ethereum"
+            },
+            {
+              "type": "text",
+              "name": "🧊・altcoins",
+              "message": "🧊 คุยเรื่องสกุลเงินทางเลือก"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Trading Room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ai",
+      "name": "🤖 AI & Tech",
+      "category": "Technology",
+      "description": "AI และเทคโนโลยี",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🤖 ยินดีต้อนรับเข้าสู่ AI Community!",
+              "embed": {
+                "enabled": true,
+                "title": "🤖 Welcome Futurists",
+                "description": "พูดคุยเรื่อง AI เทคโนโลยี และนวัตกรรม",
+                "footer": "AI Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในคอมมูนิตี้"
+            }
+          ]
+        },
+        {
+          "name": "🤖 AI",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・ai-chat",
+              "message": "💬 คุยเรื่อง AI ทั่วไป",
+              "embed": {
+                "enabled": true,
+                "title": "💬 AI Chat",
+                "description": "แลกเปลี่ยนความรู้เรื่องโมเดลและการใช้งาน",
+                "footer": "AI",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎨・ai-art",
+              "message": "🎨 แชร์ภาพที่สร้างด้วย AI",
+              "embed": {
+                "enabled": true,
+                "title": "🎨 AI Art",
+                "description": "โชว์ผลงานภาพจาก AI พร้อมพรอมพ์ที่ใช้",
+                "footer": "AI Art",
+                "color": "#EB459E"
+              }
+            },
+            {
+              "type": "text",
+              "name": "💻・prompts",
+              "message": "💻 แชร์พรอมพ์สุดเจ๋ง"
+            },
+            {
+              "type": "text",
+              "name": "🔬・research",
+              "message": "🔬 ข่าวงานวิจัยและโมเดลใหม่"
+            }
+          ]
+        },
+        {
+          "name": "📱 TECH",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💻・tech-news",
+              "message": "💻 ข่าวเทคโนโลยีและแกดเจ็ต",
+              "embed": {
+                "enabled": true,
+                "title": "💻 Tech News",
+                "description": "อัปเดตเทคโนโลยีและอุปกรณ์ใหม่ ๆ",
+                "footer": "Tech",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🛠️・gadgets",
+              "message": "🛠️ รีวิวแกดเจ็ตและอุปกรณ์"
+            },
+            {
+              "type": "text",
+              "name": "🤝・help",
+              "message": "🤝 ช่วยเหลือและถามตอบเรื่องเทค"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Hangout"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roleplay",
+      "name": "🎭 Roleplay",
+      "category": "Entertainment",
+      "description": "เซิร์ฟเวอร์เนื้อเรื่องและอินดี้",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🎭 ยินดีต้อนรับเข้าสู่ RP Server!",
+              "embed": {
+                "enabled": true,
+                "title": "🎭 Welcome Roleplayers",
+                "description": "พื้นที่เล่นบทบาทและร่วมสร้างเรื่องราว",
+                "footer": "RP Team",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาการเล่น Roleplay",
+              "embed": {
+                "enabled": true,
+                "title": "📜 RP Rules",
+                "description": "1. แยกตัวละครกับคนจริง\n2. ห้าม Meta Gaming\n3. ขอความยินยอมก่อนเล่นฉากแรง",
+                "footer": "RP Rules",
+                "color": "#ED4245"
+              }
+            }
+          ]
+        },
+        {
+          "name": "🎭 STORIES",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・rp-chat",
+              "message": "💬 ห้องเล่นบทบาทหลัก",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Main RP",
+                "description": "เล่นบทบาทในโลกของเรื่องราว",
+                "footer": "Story",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・character-sheets",
+              "message": "📜 สร้างและโชว์ใบตัวละคร"
+            },
+            {
+              "type": "text",
+              "name": "📖・lore",
+              "message": "📖 ข้อมูลเนื้อเรื่องและโลก RP",
+              "embed": {
+                "enabled": true,
+                "title": "📖 Lore & Worldbuilding",
+                "description": "อ่านเนื้อเรื่องและกฎของโลก",
+                "footer": "Lore",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🖼️・character-art",
+              "message": "🖼️ แชร์ภาพตัวละคร"
+            }
+          ]
+        },
+        {
+          "name": "⚔️ FACTION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🏰・kingdom-a",
+              "message": "🏰 ฐานทัพฝ่าย A"
+            },
+            {
+              "type": "text",
+              "name": "🐉・kingdom-b",
+              "message": "🐉 ฐานทัพฝ่าย B"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・In-Character"
+            },
+            {
+              "type": "voice",
+              "name": "🎧・Out-of-Character"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cars",
+      "name": "🚗 Car Enthusiast",
+      "category": "Lifestyle",
+      "description": "คนรักรถและการเดินทาง",
+      "categories": [
+        {
+          "name": "📌 INFORMATION",
+          "channels": [
+            {
+              "type": "text",
+              "name": "📢・announcements",
+              "message": "🚗 ยินดีต้อนรับเข้าสู่ Car Club!",
+              "embed": {
+                "enabled": true,
+                "title": "🚗 Welcome Gearheads",
+                "description": "รวมพลคนรักรถ ติดตั้ง และโมดิฟาย",
+                "footer": "Car Club",
+                "color": "#5865F2"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📜・rules",
+              "message": "📜 กติกาในคลับ"
+            }
+          ]
+        },
+        {
+          "name": "🚗 SHOWROOM",
+          "channels": [
+            {
+              "type": "text",
+              "name": "💬・car-chat",
+              "message": "💬 คุยเรื่องรถกันได้เลย",
+              "embed": {
+                "enabled": true,
+                "title": "💬 Car Chat",
+                "description": "คุยเรื่องรถยนต์ ทูนและกิจกรรม",
+                "footer": "Car Community",
+                "color": "#57F287"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📸・car-photos",
+              "message": "📸 แชร์รูปรถคันโปรด",
+              "embed": {
+                "enabled": true,
+                "title": "📸 Showroom",
+                "description": "อวดรถสวย ๆ และมุมสุดเท่",
+                "footer": "Car Club",
+                "color": "#FEE75C"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🏁・track-day",
+              "message": "🏁 นัดขึ้นสนามและกิจกรรมรถ"
+            },
+            {
+              "type": "text",
+              "name": "🔧・mechanics",
+              "message": "🔧 ช่างและเทคนิคซ่อม"
+            }
+          ]
+        },
+        {
+          "name": "🛒 MARKET",
+          "channels": [
+            {
+              "type": "text",
+              "name": "🛒・for-sale",
+              "message": "🛒 ประกาศขายรถและอะไหล่"
+            },
+            {
+              "type": "text",
+              "name": "⭐・reviews",
+              "message": "⭐ รีวิวร้านและศูนย์บริการ"
+            }
+          ]
+        },
+        {
+          "name": "🔊 VOICE",
+          "channels": [
+            {
+              "type": "voice",
+              "name": "🎤・Car Meet"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

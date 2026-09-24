@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤖 Discord Server Builder</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">🤖 Discord Server Builder</div>
+    <div class="status-wrap">
+      <span id="status-dot" class="status-dot off"></span>
+      <span id="status-text">Bot Offline</span>
+      <button id="btn-start" class="btn btn-green">▶ เริ่ม Bot</button>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="card server-card">
+      <h2>🖥️ เลือกเซิร์ฟเวอร์</h2>
+      <label for="guild-id">Discord Server (ไม่ต้องพิมพ์เอง)</label>
+      <select id="guild-id">
+        <option value="">— กดเริ่ม Bot แล้วเลือกเซิร์ฟเวอร์ —</option>
+      </select>
+      <div class="invite-row">
+        <a id="btn-invite" class="btn btn-green" target="_blank" rel="noopener">➕ เชิญบอท</a>
+        <button id="btn-refresh-guilds" class="btn btn-secondary">🔄 รีเฟรชรายชื่อ</button>
+      </div>
+      <p class="hint" id="guild-hint">บอทจะออนตลอดเวลา กดเชิญบอทเข้ากลุ่ม แล้วเลือกเซิร์ฟเวอร์เลย</p>
+    </section>
+
+    <section class="card delete-card">
+      <div class="section-head">
+        <h2>🗑️ ลบห้อง</h2>
+        <span class="hint">โหลดห้องที่มีอยู่จากเซิร์ฟเวอร์ที่เลือก แล้วลบทิ้งได้</span>
+      </div>
+      <div class="toolbar">
+        <button id="btn-load-rooms" class="btn btn-secondary">📂 โหลดห้องที่มีอยู่</button>
+        <label class="check"><input type="checkbox" id="chk-select-all"> เลือกทั้งหมด</label>
+      </div>
+      <div id="room-count" class="room-count"></div>
+      <div id="room-list" class="room-list">
+        <div class="room-empty">เลือกเซิร์ฟเวอร์ด้านบน แล้วกด "📂 โหลดห้องที่มีอยู่" เพื่อดูรายการ</div>
+      </div>
+      <div class="delete-actions">
+        <button id="btn-delete-rooms" class="btn btn-danger" disabled>🗑️ ลบที่เลือก</button>
+        <button id="btn-delete-all" class="btn btn-danger" disabled>🗑️ ลบทั้งหมด</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2>🗂️ เริ่มสร้างเซิร์ฟเวอร์</h2>
+        <span class="hint">เลือก Template แล้วกด "⚡ สร้างเลย" — สร้างทั้งเซิร์ฟเวอร์ด้วยคลิกเดียว</span>
+      </div>
+      <div class="toolbar">
+        <input id="search" type="text" placeholder="🔎 ค้นหา Template...">
+        <div id="filter-pills" class="pills"></div>
+      </div>
+      <div id="template-grid" class="grid"></div>
+    </section>
+
+    <section class="card log-card">
+      <h2>📊 Activity Log</h2>
+      <div id="log" class="log-box"></div>
+    </section>
+
+  </main>
+
+  <div id="modal" class="modal">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-title">👁️ Preview Template</h3>
+        <button class="icon-btn" data-close title="ปิด">✖</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+      <div class="modal-actions">
+        <button id="btn-preview-build" class="btn btn-primary">⚡ สร้างเลย</button>
+        <button class="btn btn-secondary" data-close>ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast-wrap"></div>
+
+  <script id="templates-data" type="application/json">{{ templates | tojson }}</script>
+  <script src="/static/app.js"></script>
+</body>
+</html>
