@@ -263,8 +263,9 @@ class DiscordBuilder:
             "embeds_sent": 0,
             "roles_created": 0,
             "roles_reused": 0,
-            "role_button_msgs": 0,
+"role_button_msgs": 0,
             "tickets_setup": 0,
+            "verification_setup": 0,
             "automation": 0,
             "categories": [],
         }
@@ -274,10 +275,17 @@ class DiscordBuilder:
         role_buttons_config = payload.get("role_buttons") or {}
         log_config = payload.get("log") or {}
         ticket_config = payload.get("ticket") or {}
+        verify_config = payload.get("verify") or {}
 
         needs_roles = bool(roles_config)
         if isinstance(role_buttons_config, dict) and role_buttons_config.get("enabled"):
             if role_buttons_config.get("buttons"):
+                needs_roles = True
+        if isinstance(ticket_config, dict) and ticket_config.get("enabled"):
+            if ticket_config.get("staff_roles"):
+                needs_roles = True
+        if isinstance(verify_config, dict) and verify_config.get("enabled"):
+            if verify_config.get("role"):
                 needs_roles = True
         if isinstance(ticket_config, dict) and ticket_config.get("staff_roles"):
             needs_roles = True
@@ -320,6 +328,7 @@ class DiscordBuilder:
             )
 
         state = self._automation()
+        state.setdefault("verify", {})
         gid = str(guild_id)
 
         if isinstance(welcome_config, dict) and welcome_config.get("enabled"):
@@ -328,6 +337,7 @@ class DiscordBuilder:
             )
             state["welcome"][gid] = {
                 "channel_id": str(wchannel.id),
+                "dm": bool(welcome_config.get("dm")),
                 "embed": welcome_config.get("embed") or {},
             }
             result["automation"] += 1
@@ -347,6 +357,36 @@ class DiscordBuilder:
             log(f"🔘 ตั้งค่าปุ่ม Role ที่ #{rb_channel.name}")
         else:
             state["role_buttons"].pop(gid, None)
+
+        if isinstance(verify_config, dict) and verify_config.get("enabled"):
+            vrole = await self._resolve_role_by_name(
+                guild, verify_config.get("role") or ""
+            )
+            if vrole is not None:
+                vchannel = await self._resolve_text_channel(
+                    guild, verify_config.get("channel") or "✅・verify", create=True
+                )
+                await self._send_verify_panel(
+                    guild, vchannel, verify_config, vrole, result, log
+                )
+                state["verify"][gid] = {
+                    "channel_id": str(vchannel.id),
+                    "role_id": str(vrole.id),
+                    "rules": verify_config.get("rules") or {},
+                    "button_label": verify_config.get("button_label")
+                    or "✅ ยืนยันตัวตน",
+                }
+                result["automation"] += 1
+                log(f"🛡️ ตั้งค่าระบบยืนยันตัวตนที่ #{vchannel.name}")
+            else:
+                log(
+                    {
+                        "type": "error",
+                        "message": "❌ ไม่พบ Role ที่กำหนดสำหรับระบบยืนยันตัวตน",
+                    }
+                )
+        else:
+            state["verify"].pop(gid, None)
 
         if isinstance(log_config, dict) and log_config.get("enabled"):
             lchannel = await self._resolve_text_channel(
@@ -461,6 +501,134 @@ class DiscordBuilder:
         result["role_button_msgs"] += 1
         log(f"🔘 ส่งปุ่ม Role ไปที่ #{channel.name}")
 
+    async def _send_verify_panel(self, guild, channel, cfg, role, result, log):
+        embed = self._build_embed(cfg.get("embed") or {})
+        view = discord.ui.View()
+        view.add_item(
+            discord.ui.Button(
+                style=discord.ButtonStyle.success,
+                label=cfg.get("button_label") or "✅ ยืนยันตัวตน",
+                emoji="✅",
+                custom_id="sb_verify",
+            )
+        )
+        await channel.send(embed=embed, view=view)
+        result["verification_setup"] += 1
+        log(f"🛡️ ส่งปุ่มยืนยันตัวตนไปที่ #{channel.name}")
+
+    async def _verify_intro(self, interaction):
+        guild = interaction.guild
+        if guild is None:
+            return
+        cfg = self._automation()
+        vcfg = cfg.get("verify", {}).get(str(guild.id))
+        if not vcfg:
+            await interaction.response.send_message(
+                "❌ เซิร์ฟเวอร์นี้ยังไม่ได้เปิดระบบยืนยันตัวตน", ephemeral=True
+            )
+            return
+        member = interaction.user
+        try:
+            role = guild.get_role(int(vcfg["role_id"]))
+        except (KeyError, TypeError, ValueError):
+            role = None
+        if role is not None and role in member.roles:
+            await interaction.response.send_message(
+                "✅ คุณยืนยันตัวตนไปแล้วแล้ว ไม่ต้องกดซ้ำนะ", ephemeral=True
+            )
+            return
+        rules = vcfg.get("rules") or {}
+        embed = discord.Embed(
+            title=rules.get("title") or "📜 กฎของเซิร์ฟเวอร์",
+            description=rules.get("description")
+            or "กรุณาอ่านกฎทั้งหมดก่อนยืนยันตัวตน",
+            color=self._parse_color(rules.get("color") or "#ED4245"),
+        )
+        embed.set_footer(text="กรุณาอ่านให้ครบ แล้วกดปุ่มด้านล่างเพื่อยอมรับกฎ")
+        view = discord.ui.View()
+        view.add_item(
+            discord.ui.Button(
+                style=discord.ButtonStyle.success,
+                label=rules.get("agree_button") or "🗳️ ตกลง ฉันยอมรับกฎ",
+                emoji="🗳️",
+                custom_id="sb_agree",
+            )
+        )
+        await interaction.response.send_message(embed=embed, view=view, ephemeral=True)
+
+    async def _verify_agree(self, interaction):
+        guild = interaction.guild
+        if guild is None:
+            return
+        cfg = self._automation()
+        vcfg = cfg.get("verify", {}).get(str(guild.id))
+        if not vcfg:
+            await interaction.response.send_message(
+                "❌ เซิร์ฟเวอร์นี้ยังไม่ได้เปิดระบบยืนยันตัวตน", ephemeral=True
+            )
+            return
+        member = interaction.user
+        me = guild.me
+        if me is None or not (
+            me.guild_permissions.administrator or me.guild_permissions.manage_roles
+        ):
+            await interaction.response.send_message(
+                "❌ Bot ขาดสิทธิ์ **Manage Roles / Administrator**\nโปรดแจ้งแอดมินเพื่อให้สิทธิ์บอทก่อน",
+                ephemeral=True,
+            )
+            return
+        try:
+            role = guild.get_role(int(vcfg["role_id"]))
+        except (KeyError, TypeError, ValueError):
+            role = None
+        if role is None:
+            await interaction.response.send_message(
+                "❌ ไม่พบ Role ที่กำหนดไว้แล้ว (อาจถูกลบไป) แจ้งแอดมินได้เลย", ephemeral=True
+            )
+            return
+        await interaction.response.defer(ephemeral=True)
+        if role in member.roles:
+            await interaction.followup.send(
+                "✅ คุณยืนยันตัวตนไปแล้วแล้ว ไม่ต้องกดซ้ำนะ", ephemeral=True
+            )
+            return
+        try:
+            await member.add_roles(role, reason="ยืนยันตัวตนจาก Discord Server Builder")
+        except discord.Forbidden:
+            await interaction.followup.send(
+                "❌ Bot ไม่มีสิทธิ์มอบ Role นี้ (ตรวจลำดับ Role ในเซิร์ฟเวอร์)", ephemeral=True
+            )
+            return
+        except discord.HTTPException:
+            await interaction.followup.send(
+                "❌ เกิดข้อผิดพลาด โปรดลองอีกครั้ง", ephemeral=True
+            )
+            return
+
+        embed = discord.Embed(
+            title="✅ ยืนยันตัวตนสำเร็จ!",
+            description=(
+                f"ยินดีต้อนรับอย่างเป็นทางการ **{member.display_name}** 🎉\n\n"
+                f"คุณได้รับ Role **{role.name}** แล้ว\n\n"
+                "🎭 ลองเลือกรับ Role เพิ่มเติมได้ที่ **#🎭・roles**\n"
+                "💬 เข้ามาพูดคุยกับเพื่อน ๆ ได้เลย!"
+            ),
+            color=0x57F287,
+        )
+        try:
+            avatar = member.display_avatar.url
+        except Exception:
+            avatar = None
+        if avatar:
+            embed.set_thumbnail(url=avatar)
+        try:
+            guild_icon = guild.icon.url
+        except Exception:
+            guild_icon = None
+        if guild_icon:
+            embed.set_footer(text=guild.name, icon_url=guild_icon)
+        await interaction.followup.send(embed=embed, ephemeral=True)
+
     async def _setup_ticket(self, guild, cfg, state, result, log):
         cat_name = str(cfg.get("category") or "TICKETS").strip()
         category = discord.utils.get(guild.categories, name=cat_name)
@@ -520,6 +688,10 @@ class DiscordBuilder:
         if channel is None and create:
             channel = await guild.create_text_channel(normalized)
         return channel
+
+    @staticmethod
+    def _resolve_role_by_name(guild, name):
+        return discord.utils.get(guild.roles, name=str(name or "").strip())
 
     async def _resolve_guild(self, guild_id):
         guild = self._client.get_guild(guild_id)
@@ -771,6 +943,7 @@ class DiscordBuilder:
             "role_buttons": {},
             "log": {},
             "ticket": {},
+            "verify": {},
         }
 
     def _save_state(self, data):
@@ -799,7 +972,9 @@ class DiscordBuilder:
         cfg = self._automation()
         gid = str(guild.id)
 
-        if joined and (perms.administrator or perms.manage_roles):
+        verify_on = bool(cfg.get("verify", {}).get(gid))
+
+        if joined and not verify_on and (perms.administrator or perms.manage_roles):
             for role_id in cfg.get("auto_roles", {}).get(gid, []):
                 role = guild.get_role(role_id)
                 if role is not None and role not in member.roles:
@@ -814,20 +989,12 @@ class DiscordBuilder:
             return
 
         welcome = cfg.get("welcome", {}).get(gid)
-        if welcome:
+        if welcome and joined:
             channel = guild.get_channel(int(welcome["channel_id"]))
             if isinstance(channel, discord.TextChannel):
-                embed = self._build_embed(welcome.get("embed") or {})
-                try:
-                    if embed is not None:
-                        await channel.send(
-                            f"🎉 ยินดีต้อนรับ {member.mention}!",
-                            embed=embed,
-                        )
-                    else:
-                        await channel.send(f"🎉 ยินดีต้อนรับ {member.mention}!")
-                except (discord.Forbidden, discord.HTTPException):
-                    pass
+                await self._send_welcome_channel(guild, channel, member, welcome)
+            if welcome.get("dm"):
+                await self._send_welcome_dm(guild, member, welcome)
 
         log_cfg = cfg.get("log", {}).get(gid)
         if log_cfg:
@@ -855,6 +1022,83 @@ class DiscordBuilder:
                 except (discord.Forbidden, discord.HTTPException):
                     pass
 
+    def _avatar_url(self, member):
+        try:
+            return member.display_avatar.url
+        except Exception:
+            return None
+
+    def _guild_icon(self, guild):
+        try:
+            return guild.icon.url if guild.icon else None
+        except Exception:
+            return None
+
+    async def _send_welcome_channel(self, guild, channel, member, welcome):
+        embed = self._build_embed(welcome.get("embed") or {})
+        if embed is not None:
+            avatar = self._avatar_url(member)
+            if avatar:
+                embed.set_thumbnail(url=avatar)
+            if guild.member_count is not None:
+                embed.add_field(
+                    name="👥 สมาชิกทั้งหมด",
+                    value=f"{guild.member_count:,} คน",
+                    inline=True,
+                )
+            if member.joined_at is not None:
+                embed.add_field(
+                    name="📅 เข้าร่วมเมื่อ",
+                    value=member.joined_at.strftime("%d/%m/%Y"),
+                    inline=True,
+                )
+            icon = self._guild_icon(guild)
+            embed.set_footer(
+                text=guild.name,
+                icon_url=icon if icon else discord.Embed.Empty,
+            )
+            try:
+                await channel.send(f"✨ ยินดีต้อนรับ {member.mention}!", embed=embed)
+                return
+            except (discord.Forbidden, discord.HTTPException):
+                pass
+        try:
+            await channel.send(f"🎉 ยินดีต้อนรับ {member.mention} เข้าสู่เซิร์ฟเวอร์!")
+        except (discord.Forbidden, discord.HTTPException):
+            pass
+
+    async def _send_welcome_dm(self, guild, member, welcome):
+        embed = self._build_embed(welcome.get("embed") or {})
+        if embed is not None:
+            embed.title = "🎉 ยินดีต้อนรับเข้าสู่ " + guild.name + "!"
+            embed.description = (
+                f"สวัสดี **{member.display_name}**! 💫\n\n"
+                f"ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ **{guild.name}**\n"
+                "ก่อนเริ่มใช้งาน **อย่าลืม**:\n"
+                "1️⃣ อ่านกฎที่ **#📜・rules**\n"
+                "2️⃣ ยืนยันตัวตนที่ **#✅・verify** เพื่อเข้าถึงช่องทั้งหมด\n"
+                "3️⃣ เลือก Role ที่ชอบที่ **#🎭・roles**\n\n"
+                "ขอให้สนุกกับการพูดคุยนะ! 🥳"
+            )
+            avatar = self._avatar_url(member)
+            if avatar:
+                embed.set_thumbnail(url=avatar)
+            icon = self._guild_icon(guild)
+            embed.set_footer(
+                text=guild.name,
+                icon_url=icon if icon else discord.Embed.Empty,
+            )
+        try:
+            if embed is not None:
+                await member.send(embed=embed)
+            else:
+                await member.send(
+                    f"🎉 ยินดีต้อนรับเข้าสู่ **{guild.name}**! "
+                    "อย่าลืมไปยืนยันตัวตนที่ **#✅・verify** นะ"
+                )
+        except Exception:
+            pass
+
     # ---------- interactions ----------
 
     async def _handle_interaction(self, interaction):
@@ -868,6 +1112,10 @@ class DiscordBuilder:
                 await self._open_ticket(interaction, custom_id)
             elif custom_id == "sb_tclose":
                 await self._close_ticket(interaction)
+            elif custom_id == "sb_verify":
+                await self._verify_intro(interaction)
+            elif custom_id == "sb_agree":
+                await self._verify_agree(interaction)
         except Exception:
             pass
 

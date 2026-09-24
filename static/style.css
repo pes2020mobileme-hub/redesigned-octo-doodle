@@ -472,6 +472,13 @@ label {
   border-radius: 999px;
 }
 
+.pv-extras {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0 4px;
+}
+
 .b-blue { background: rgba(88, 101, 242, .2); color: #9aa4ff; }
 .b-purple { background: rgba(152, 79, 205, .25); color: #c58bff; }
 

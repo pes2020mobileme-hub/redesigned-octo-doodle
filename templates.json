@@ -11,6 +11,42 @@
           "channels": [
             {
               "type": "text",
+              "name": "🎭・roles",
+              "message": "🎭 เลือก Role ที่ต้องการได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🎭 เลือก Role",
+                "description": "กดปุ่มด้านล่างเพื่อเลือกรับ Role ที่ต้องการ\nสามารถสลับได้ตลอดเวลาตามที่เซิร์ฟเวอร์กำหนด",
+                "color": "#5865F2",
+                "footer": "👥 Community"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "👥 Community"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#5865F2",
+                "footer": "👥 Community"
+              }
+            },
+            {
+              "type": "text",
               "name": "📢・announcements",
               "message": "🎉 ยินดีต้อนรับเข้าสู่ Community!",
               "embed": {
@@ -89,7 +125,14 @@
             {
               "type": "text",
               "name": "🎮・looking-to-play",
-              "message": "🎮 หาเพื่อนเล่นเกมได้ที่นี่"
+              "message": "🎮 หาเพื่อนเล่นเกมได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🎮・looking-to-play",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "👥 Community"
+              }
             }
           ]
         },
@@ -117,7 +160,7 @@
       ],
       "roles": [
         {
-          "name": "?? Admin",
+          "name": "🛡️ Admin",
           "color": "#ED4245",
           "permissions": [
             "manage_channels",
@@ -130,7 +173,7 @@
           ]
         },
         {
-          "name": "??? Moderator",
+          "name": "🛠️ Moderator",
           "color": "#57F287",
           "permissions": [
             "manage_messages",
@@ -140,7 +183,7 @@
           ]
         },
         {
-          "name": "? Member",
+          "name": "👤 Member",
           "color": "#5865F2",
           "permissions": [
             "view_channel",
@@ -155,10 +198,10 @@
             "speak",
             "stream"
           ],
-          "auto": true
+          "auto": false
         },
         {
-          "name": "?? VIP",
+          "name": "👑 VIP",
           "color": "#FEE75C",
           "permissions": [
             "view_channel",
@@ -177,24 +220,25 @@
       ],
       "welcome": {
         "enabled": true,
-        "channel": "✅・verify",
+        "channel": "👋・welcome",
+        "dm": true,
         "embed": {
           "enabled": true,
-          "title": "?? ??????????????????? Community!",
-          "description": "??????????????????????????\n???????????? rules ??????????????????????????????????",
-          "footer": "Community Team",
+          "title": "🎉 ยินดีต้อนรับสู่ Community!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
           "color": "#5865F2",
-          "author_name": "Server Builder",
+          "footer": "Community Team",
+          "author_name": "Community",
           "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
           "fields": [
             {
-              "name": "?? ??????",
-              "value": "??????????????????????? #📢・announcements",
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
               "inline": true
             },
             {
-              "name": "?? ??????",
-              "value": "?????????????????????",
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
               "inline": true
             }
           ]
@@ -202,41 +246,60 @@
       },
       "role_buttons": {
         "enabled": true,
-        "channel": "✅・verify",
-        "title": "?? ????? Role ??????",
-        "description": "? Member = ????????????\n?? VIP = ???????????",
-        "footer": "Role Selection",
+        "channel": "🎭・roles",
+        "title": "🎭 เลือก Role ที่คุณต้องการ",
+        "description": "กดปุ่มเพื่อรับหรือปลด Role ได้ตามต้องการ\n\n**👑 VIP** = สมาชิกระดับพรีเมียม 💎",
+        "footer": "เลือก Role ได้ตามใจชอบ",
         "color": "#5865F2",
         "buttons": [
           {
             "label": "Member",
-            "emoji": "?",
-            "role": "? Member"
+            "emoji": "👤",
+            "role": "👤 Member"
           },
           {
             "label": "VIP",
-            "emoji": "??",
-            "role": "?? VIP"
+            "emoji": "👑",
+            "role": "👑 VIP"
           }
         ]
       },
       "log": {
         "enabled": true,
-        "channel": "modlogs",
+        "channel": "📝・modlogs",
         "join_leave": true
       },
       "ticket": {
         "enabled": true,
-        "channel": "support",
-        "category": "?? TICKETS",
-        "title": "??? Ticket Support",
-        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
-        "footer": "Support Team",
-        "color": "#ED4245",
+        "channel": "🎫・support",
+        "category": "🎫 TICKETS",
+        "title": "🎫 Support Ticket — Community",
+        "description": "พบปัญหาหรือต้องการความช่วยเหลือ?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket** ทีมงานจะติดต่อกลับโดยเร็ว\n\n⚠️ โปรดกรอกรายละเอียดปัญหาให้ชัดเจนเพื่อให้ช่วยได้เร็วขึ้น",
+        "footer": "Community Support Team",
+        "color": "#5865F2",
         "staff_roles": [
-          "??? Moderator",
-          "?? Admin"
+          "🛠️ Moderator",
+          "🛡️ Admin"
         ]
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ Community",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#5865F2",
+          "footer": "Community · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ Community",
+          "description": "1. ให้เกียรติและเคารพสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาโดยไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมายหรือไม่เหมาะสม ⚖️\n4. ปฏิบัติตามคำสั่งของทีมงาน 🛡️\n5. อ่านเพิ่มเติมได้ที่ **#📜・rules**",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
       }
     },
     {
@@ -248,6 +311,54 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "🎭・roles",
+              "message": "🎭 เลือก Role ที่ต้องการได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🎭 เลือก Role",
+                "description": "กดปุ่มด้านล่างเพื่อเลือกรับ Role ที่ต้องการ\nสามารถสลับได้ตลอดเวลาตามที่เซิร์ฟเวอร์กำหนด",
+                "color": "#F0B232",
+                "footer": "🎮 Gaming"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎮 Gaming"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#F0B232",
+                "footer": "🎮 Gaming"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#F0B232",
+                "footer": "🎮 Gaming"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -340,7 +451,14 @@
             {
               "type": "text",
               "name": "💡・suggestions",
-              "message": "💡 เสนอไอเดียพัฒนาองค์กร"
+              "message": "💡 เสนอไอเดียพัฒนาองค์กร",
+              "embed": {
+                "enabled": true,
+                "title": "💡・suggestions",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#F0B232",
+                "footer": "🎮 Gaming"
+              }
             }
           ]
         },
@@ -372,7 +490,7 @@
       ],
       "roles": [
         {
-          "name": "?? Admin",
+          "name": "🛡️ Admin",
           "color": "#ED4245",
           "permissions": [
             "manage_channels",
@@ -385,7 +503,7 @@
           ]
         },
         {
-          "name": "??? Moderator",
+          "name": "🛠️ Moderator",
           "color": "#57F287",
           "permissions": [
             "manage_messages",
@@ -395,7 +513,7 @@
           ]
         },
         {
-          "name": "? Player",
+          "name": "🎮 Player",
           "color": "#F0B232",
           "permissions": [
             "view_channel",
@@ -410,10 +528,10 @@
             "speak",
             "stream"
           ],
-          "auto": true
+          "auto": false
         },
         {
-          "name": "?? VIP",
+          "name": "👑 VIP",
           "color": "#FEE75C",
           "permissions": [
             "view_channel",
@@ -432,24 +550,25 @@
       ],
       "welcome": {
         "enabled": true,
-        "channel": "📢・announcements",
+        "channel": "👋・welcome",
+        "dm": true,
         "embed": {
           "enabled": true,
-          "title": "?? ??????????????? Gaming Server!",
-          "description": "???????????????????????????\n??????????????????????????????????????",
+          "title": "🎉 ยินดีต้อนรับสู่ Gaming!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#F0B232",
           "footer": "Gaming Team",
-          "color": "#FEE75C",
-          "author_name": "Server Builder",
+          "author_name": "Gaming",
           "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
           "fields": [
             {
-              "name": "?? ??????",
-              "value": "??????????????????????? #📢・announcements",
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
               "inline": true
             },
             {
-              "name": "?? ??????",
-              "value": "?????????????????????",
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
               "inline": true
             }
           ]
@@ -457,41 +576,60 @@
       },
       "role_buttons": {
         "enabled": true,
-        "channel": "📢・announcements",
-        "title": "?? ????? Role ??????",
-        "description": "? Player = ?????????????\n?? VIP = ???????????",
-        "footer": "Role Selection",
+        "channel": "🎭・roles",
+        "title": "🎮 เลือก Role สายผู้เล่น",
+        "description": "กดปุ่มเพื่อรับหรือปลด Role ได้ตามต้องการ\n\n**🎮 Player** = ผู้เล่นทั่วไป\n**👑 VIP** = สมาชิก VIP",
+        "footer": "เลือก Role ได้ตามใจชอบ",
         "color": "#F0B232",
         "buttons": [
           {
             "label": "Player",
-            "emoji": "?",
-            "role": "? Player"
+            "emoji": "🎮",
+            "role": "🎮 Player"
           },
           {
             "label": "VIP",
-            "emoji": "??",
-            "role": "?? VIP"
+            "emoji": "👑",
+            "role": "👑 VIP"
           }
         ]
       },
       "log": {
         "enabled": true,
-        "channel": "modlogs",
+        "channel": "📝・modlogs",
         "join_leave": true
       },
       "ticket": {
         "enabled": true,
-        "channel": "support",
-        "category": "?? TICKETS",
-        "title": "??? Ticket Support",
-        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
-        "footer": "Support Team",
-        "color": "#ED4245",
+        "channel": "🎫・support",
+        "category": "🎫 TICKETS",
+        "title": "🎫 Support Ticket — Gaming",
+        "description": "พบปัญหาหรือต้องการความช่วยเหลือ?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket** ทีมงานจะติดต่อกลับโดยเร็ว\n\n⚠️ โปรดกรอกรายละเอียดปัญหาให้ชัดเจนเพื่อให้ช่วยได้เร็วขึ้น",
+        "footer": "Gaming Support Team",
+        "color": "#F0B232",
         "staff_roles": [
-          "??? Moderator",
-          "?? Admin"
+          "🛠️ Moderator",
+          "🛡️ Admin"
         ]
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "🎮 Player",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ Gaming Server",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#F0B232",
+          "footer": "Gaming Server · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ Gaming Server",
+          "description": "1. เล่นอย่างเป็นธรรม ห้ามโกงหรือใช้โปรแกรมช่วย 🚫\n2. ให้เกียรติเพื่อนร่วมทีมและคู่แข่ง 🤝\n3. ห้ามสแปมหรือพูดจาหยาบคาย 💬\n4. ไม่โฆษณาโดยไม่ได้รับอนุญาต 📢\n5. ติดตามประกาศได้ที่ **#📢・announcements**",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
       }
     },
     {
@@ -503,6 +641,42 @@
         {
           "name": "🛒 SHOP",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🛒 Online Shop"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#57F287",
+                "footer": "🛒 Online Shop"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#57F287",
+                "footer": "🛒 Online Shop"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -542,7 +716,14 @@
             {
               "type": "text",
               "name": "📦・pre-order",
-              "message": "📦 สินค้าพรีออเดอร์"
+              "message": "📦 สินค้าพรีออเดอร์",
+              "embed": {
+                "enabled": true,
+                "title": "📦・pre-order",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🛒 Online Shop"
+              }
             },
             {
               "type": "text",
@@ -559,7 +740,14 @@
             {
               "type": "text",
               "name": "💬・general-chat",
-              "message": "💬 พูดคุยเรื่องสินค้าได้ที่นี่"
+              "message": "💬 พูดคุยเรื่องสินค้าได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "💬・general-chat",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🛒 Online Shop"
+              }
             }
           ]
         },
@@ -593,7 +781,14 @@
             {
               "type": "text",
               "name": "📋・bug-report",
-              "message": "📋 แจ้งปัญหาเกี่ยวกับเว็บไซต์"
+              "message": "📋 แจ้งปัญหาเกี่ยวกับเว็บไซต์",
+              "embed": {
+                "enabled": true,
+                "title": "📋・bug-report",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🛒 Online Shop"
+              }
             }
           ]
         },
@@ -610,7 +805,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🛒 Online Shop!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#57F287",
+          "footer": "🛒 Online Shop Team",
+          "author_name": "🛒 Online Shop",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🛒 Online Shop",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#57F287",
+          "footer": "🛒 Online Shop · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🛒 Online Shop",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "support",
@@ -621,6 +886,66 @@
         {
           "name": "🎧 SUPPORT",
           "channels": [
+            {
+              "type": "text",
+              "name": "🎭・roles",
+              "message": "🎭 เลือก Role ที่ต้องการได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🎭 เลือก Role",
+                "description": "กดปุ่มด้านล่างเพื่อเลือกรับ Role ที่ต้องการ\nสามารถสลับได้ตลอดเวลาตามที่เซิร์ฟเวอร์กำหนด",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
+            },
+            {
+              "type": "text",
+              "name": "🎫・support",
+              "message": "🎫 สร้าง Ticket เพื่อขอความช่วยเหลือ",
+              "embed": {
+                "enabled": true,
+                "title": "🎫 ติดต่อทีมงาน",
+                "description": "ต้องการความช่วยเหลือ?\nทีมงานพร้อมตอบทุกปัญหา ติดต่อผ่านระบบ Ticket ได้เลย",
+                "color": "#ED4245",
+                "footer": "🎧 Support Center"
+              }
+            },
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎧 Support Center"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
+            },
             {
               "type": "text",
               "name": "📢・information",
@@ -660,12 +985,26 @@
             {
               "type": "text",
               "name": "💬・general-chat",
-              "message": "💬 พูดคุยทั่วไป"
+              "message": "💬 พูดคุยทั่วไป",
+              "embed": {
+                "enabled": true,
+                "title": "💬・general-chat",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
             },
             {
               "type": "text",
               "name": "📋・bug-report",
-              "message": "📋 แจ้งบั๊กหรือปัญหาที่พบ"
+              "message": "📋 แจ้งบั๊กหรือปัญหาที่พบ",
+              "embed": {
+                "enabled": true,
+                "title": "📋・bug-report",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
             }
           ]
         },
@@ -675,17 +1014,38 @@
             {
               "type": "text",
               "name": "📖・articles",
-              "message": "📖 บทความช่วยเหลือและคู่มือ"
+              "message": "📖 บทความช่วยเหลือและคู่มือ",
+              "embed": {
+                "enabled": true,
+                "title": "📖・articles",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
             },
             {
               "type": "text",
               "name": "🎥・video-guides",
-              "message": "🎥 คลิปสอนการใช้งาน"
+              "message": "🎥 คลิปสอนการใช้งาน",
+              "embed": {
+                "enabled": true,
+                "title": "🎥・video-guides",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
             },
             {
               "type": "text",
               "name": "💡・suggestions",
-              "message": "💡 เสนอแนะวิธีพัฒนาระบบ"
+              "message": "💡 เสนอแนะวิธีพัฒนาระบบ",
+              "embed": {
+                "enabled": true,
+                "title": "💡・suggestions",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🎧 Support Center"
+              }
             }
           ]
         },
@@ -705,7 +1065,7 @@
       ],
       "roles": [
         {
-          "name": "?? Admin",
+          "name": "🛡️ Admin",
           "color": "#ED4245",
           "permissions": [
             "manage_channels",
@@ -718,7 +1078,7 @@
           ]
         },
         {
-          "name": "??? Moderator",
+          "name": "🛠️ Moderator",
           "color": "#57F287",
           "permissions": [
             "manage_messages",
@@ -728,7 +1088,7 @@
           ]
         },
         {
-          "name": "? Member",
+          "name": "👤 Member",
           "color": "#5865F2",
           "permissions": [
             "view_channel",
@@ -743,10 +1103,10 @@
             "speak",
             "stream"
           ],
-          "auto": true
+          "auto": false
         },
         {
-          "name": "?? VIP",
+          "name": "👑 VIP",
           "color": "#FEE75C",
           "permissions": [
             "view_channel",
@@ -765,24 +1125,25 @@
       ],
       "welcome": {
         "enabled": true,
-        "channel": "📢・information",
+        "channel": "👋・welcome",
+        "dm": true,
         "embed": {
           "enabled": true,
-          "title": "?? ??????????????? Support!",
-          "description": "???????????????????????????\n????????????????????????????????????????",
-          "footer": "Support Team",
+          "title": "🎉 ยินดีต้อนรับสู่ Support Center!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
           "color": "#5865F2",
-          "author_name": "Server Builder",
+          "footer": "Support Center Team",
+          "author_name": "Support Center",
           "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
           "fields": [
             {
-              "name": "?? ??????",
-              "value": "??????????????????????? #📢・information",
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
               "inline": true
             },
             {
-              "name": "?? ??????",
-              "value": "?????????????????????",
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
               "inline": true
             }
           ]
@@ -790,41 +1151,60 @@
       },
       "role_buttons": {
         "enabled": true,
-        "channel": "📢・information",
-        "title": "?? ????? Role ??????",
-        "description": "? Member = ??????\n?? VIP = ???????????",
-        "footer": "Role Selection",
+        "channel": "🎭・roles",
+        "title": "🎭 เลือกบทบาทของคุณ",
+        "description": "กดปุ่มเพื่อรับหรือปลด Role ได้ตามต้องการ\n\n**👤 Member** = สมาชิกทั่วไป\n**👑 VIP** = สมาชิก VIP",
+        "footer": "เลือก Role ได้ตามใจชอบ",
         "color": "#5865F2",
         "buttons": [
           {
             "label": "Member",
-            "emoji": "?",
-            "role": "? Member"
+            "emoji": "👤",
+            "role": "👤 Member"
           },
           {
             "label": "VIP",
-            "emoji": "??",
-            "role": "?? VIP"
+            "emoji": "👑",
+            "role": "👑 VIP"
           }
         ]
       },
       "log": {
         "enabled": true,
-        "channel": "modlogs",
+        "channel": "📝・modlogs",
         "join_leave": true
       },
       "ticket": {
         "enabled": true,
-        "channel": "support",
-        "category": "?? TICKETS",
-        "title": "??? Ticket Support",
-        "description": "????????????????????????????????\n??????????????????????? Ticket ????????????????????????????????",
-        "footer": "Support Team",
+        "channel": "🎫・support",
+        "category": "🎫 TICKETS",
+        "title": "🎫 Support Ticket — Support Center",
+        "description": "พบปัญหาหรือต้องการความช่วยเหลือ?\nกดปุ่มด้านล่างเพื่อ**เปิด Ticket** ทีมงานจะติดต่อกลับโดยเร็ว\n\n⚠️ โปรดกรอกรายละเอียดปัญหาให้ชัดเจนเพื่อให้ช่วยได้เร็วขึ้น",
+        "footer": "Support Center Support Team",
         "color": "#ED4245",
         "staff_roles": [
-          "??? Moderator",
-          "?? Admin"
+          "🛠️ Moderator",
+          "🛡️ Admin"
         ]
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ Support Center",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#5865F2",
+          "footer": "Support Center · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ Support Center",
+          "description": "1. ให้เกียรติทีมงานและสมาชิกทุกคน 🤝\n2. โปรดอธิบายปัญหาอย่างละเอียดเพื่อช่วยเหลือได้เร็วขึ้น 📋\n3. ห้ามสแปมหรือสร้างห้อห้ามสนทนา 🚫\n4. ปฏิบัติตามกฎและนโยบายของเซิร์ฟเวอร์ ⚖️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
       }
     },
     {
@@ -836,6 +1216,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#EB459E",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#EB459E",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -851,7 +1267,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาง่าย ๆ แค่มีน้ำใจกัน"
+              "message": "📜 กติกาง่าย ๆ แค่มีน้ำใจกัน",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
             }
           ]
         },
@@ -897,12 +1320,26 @@
             {
               "type": "text",
               "name": "🎉・memes",
-              "message": "🎉 แชร์มีมป่วน ๆ ได้เลย"
+              "message": "🎉 แชร์มีมป่วน ๆ ได้เลย",
+              "embed": {
+                "enabled": true,
+                "title": "🎉・memes",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
             },
             {
               "type": "text",
               "name": "🎵・music",
-              "message": "🎵 แชร์เพลงโปรดของเพื่อน ๆ"
+              "message": "🎵 แชร์เพลงโปรดของเพื่อน ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🎵・music",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "👨‍👩‍👧‍👦 Friends"
+              }
             }
           ]
         },
@@ -923,7 +1360,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 👨‍👩‍👧‍👦 Friends!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#EB459E",
+          "footer": "👨‍👩‍👧‍👦 Friends Team",
+          "author_name": "👨‍👩‍👧‍👦 Friends",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 👨‍👩‍👧‍👦 Friends",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#EB459E",
+          "footer": "👨‍👩‍👧‍👦 Friends · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 👨‍👩‍👧‍👦 Friends",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "education",
@@ -934,6 +1441,42 @@
         {
           "name": "📚 CLASSROOM",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "📚 Education"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#5865F2",
+                "footer": "📚 Education"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#5865F2",
+                "footer": "📚 Education"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -973,17 +1516,38 @@
             {
               "type": "text",
               "name": "📝・assignments",
-              "message": "📝 ส่งงานและการบ้าน"
+              "message": "📝 ส่งงานและการบ้าน",
+              "embed": {
+                "enabled": true,
+                "title": "📝・assignments",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "📚 Education"
+              }
             },
             {
               "type": "text",
               "name": "❓・quiz",
-              "message": "❓ แบบฝึกหัดและทดสอบ"
+              "message": "❓ แบบฝึกหัดและทดสอบ",
+              "embed": {
+                "enabled": true,
+                "title": "❓・quiz",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "📚 Education"
+              }
             },
             {
               "type": "text",
               "name": "🏫・general",
-              "message": "🏫 ห้องพบปะพูดคุยทั่วไป"
+              "message": "🏫 ห้องพบปะพูดคุยทั่วไป",
+              "embed": {
+                "enabled": true,
+                "title": "🏫・general",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "📚 Education"
+              }
             }
           ]
         },
@@ -1004,7 +1568,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 📚 Education!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#5865F2",
+          "footer": "📚 Education Team",
+          "author_name": "📚 Education",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 📚 Education",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#5865F2",
+          "footer": "📚 Education · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 📚 Education",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "developer",
@@ -1015,6 +1649,42 @@
         {
           "name": "💻 DEVELOPMENT",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "💻 Developer"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
+            },
             {
               "type": "text",
               "name": "📢・dev-news",
@@ -1030,7 +1700,14 @@
             {
               "type": "text",
               "name": "💬・general-chat",
-              "message": "💬 พูดคุยเรื่องโปรแกรมทั่วไป"
+              "message": "💬 พูดคุยเรื่องโปรแกรมทั่วไป",
+              "embed": {
+                "enabled": true,
+                "title": "💬・general-chat",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
             },
             {
               "type": "text",
@@ -1059,17 +1736,38 @@
             {
               "type": "text",
               "name": "🐛・bug-report",
-              "message": "🐛 แจ้งบั๊กที่เจอระหว่างพัฒนา"
+              "message": "🐛 แจ้งบั๊กที่เจอระหว่างพัฒนา",
+              "embed": {
+                "enabled": true,
+                "title": "🐛・bug-report",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
             },
             {
               "type": "text",
               "name": "🤝・showcase",
-              "message": "🤝 โชว์ผลงานและโปรเจกต์ของตัวเอง"
+              "message": "🤝 โชว์ผลงานและโปรเจกต์ของตัวเอง",
+              "embed": {
+                "enabled": true,
+                "title": "🤝・showcase",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
             },
             {
               "type": "text",
               "name": "📚・learning-resources",
-              "message": "📚 แหล่งเรียนรู้ และคอร์สแนะนำ"
+              "message": "📚 แหล่งเรียนรู้ และคอร์สแนะนำ",
+              "embed": {
+                "enabled": true,
+                "title": "📚・learning-resources",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "💻 Developer"
+              }
             }
           ]
         },
@@ -1086,7 +1784,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 💻 Developer!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#57F287",
+          "footer": "💻 Developer Team",
+          "author_name": "💻 Developer",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 💻 Developer",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#57F287",
+          "footer": "💻 Developer · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 💻 Developer",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "music",
@@ -1097,6 +1865,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎵 Music"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1112,7 +1916,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาในการเข้าร่วม"
+              "message": "📜 กติกาในการเข้าร่วม",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
             }
           ]
         },
@@ -1146,17 +1957,38 @@
             {
               "type": "text",
               "name": "🎶・song-requests",
-              "message": "🎶 ขอเพลงได้ที่นี่!"
+              "message": "🎶 ขอเพลงได้ที่นี่!",
+              "embed": {
+                "enabled": true,
+                "title": "🎶・song-requests",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
             },
             {
               "type": "text",
               "name": "🎵・playlists",
-              "message": "🎵 แชร์เพลย์ลิสต์สุดโปรด"
+              "message": "🎵 แชร์เพลย์ลิสต์สุดโปรด",
+              "embed": {
+                "enabled": true,
+                "title": "🎵・playlists",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
             },
             {
               "type": "text",
               "name": "💡・suggestions",
-              "message": "💡 เสนอเพลงหรือกิจกรรม"
+              "message": "💡 เสนอเพลงหรือกิจกรรม",
+              "embed": {
+                "enabled": true,
+                "title": "💡・suggestions",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎵 Music"
+              }
             }
           ]
         },
@@ -1181,7 +2013,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🎵 Music!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#EB459E",
+          "footer": "🎵 Music Team",
+          "author_name": "🎵 Music",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🎵 Music",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#EB459E",
+          "footer": "🎵 Music · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🎵 Music",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "creator",
@@ -1192,6 +2094,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎬 Content Creator"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#ED4245",
+                "footer": "🎬 Content Creator"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#ED4245",
+                "footer": "🎬 Content Creator"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1260,12 +2198,26 @@
             {
               "type": "text",
               "name": "🤝・collab",
-              "message": "🤝 หาเพื่อนทำคอนเทนต์และรวมงานกันได้ที่นี่"
+              "message": "🤝 หาเพื่อนทำคอนเทนต์และรวมงานกันได้ที่นี่",
+              "embed": {
+                "enabled": true,
+                "title": "🤝・collab",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🎬 Content Creator"
+              }
             },
             {
               "type": "text",
               "name": "🎯・suggestions",
-              "message": "🎯 แนะนำไอเดียคอนเทนต์ให้เราด้วย!"
+              "message": "🎯 แนะนำไอเดียคอนเทนต์ให้เราด้วย!",
+              "embed": {
+                "enabled": true,
+                "title": "🎯・suggestions",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🎬 Content Creator"
+              }
             }
           ]
         },
@@ -1286,7 +2238,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🎬 Content Creator!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#ED4245",
+          "footer": "🎬 Content Creator Team",
+          "author_name": "🎬 Content Creator",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🎬 Content Creator",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#ED4245",
+          "footer": "🎬 Content Creator · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🎬 Content Creator",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "esports",
@@ -1297,6 +2319,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🏆 Esports"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#FEE75C",
+                "footer": "🏆 Esports"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#FEE75C",
+                "footer": "🏆 Esports"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1365,17 +2423,38 @@
             {
               "type": "text",
               "name": "🧩・scrims",
-              "message": "🧩 นัดซ้อมแมตช์ระหว่างทีม"
+              "message": "🧩 นัดซ้อมแมตช์ระหว่างทีม",
+              "embed": {
+                "enabled": true,
+                "title": "🧩・scrims",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🏆 Esports"
+              }
             },
             {
               "type": "text",
               "name": "📊・stats",
-              "message": "📊 สถิติและผลงานของทีม"
+              "message": "📊 สถิติและผลงานของทีม",
+              "embed": {
+                "enabled": true,
+                "title": "📊・stats",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🏆 Esports"
+              }
             },
             {
               "type": "text",
               "name": "🎥・replays",
-              "message": "🎥 คลิปไฮไลท์และการวิเคราะห์เกม"
+              "message": "🎥 คลิปไฮไลท์และการวิเคราะห์เกม",
+              "embed": {
+                "enabled": true,
+                "title": "🎥・replays",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🏆 Esports"
+              }
             }
           ]
         },
@@ -1400,7 +2479,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🏆 Esports!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#FEE75C",
+          "footer": "🏆 Esports Team",
+          "author_name": "🏆 Esports",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🏆 Esports",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#FEE75C",
+          "footer": "🏆 Esports · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🏆 Esports",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "fps",
@@ -1411,6 +2560,30 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎯 FPS Gaming"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#F0B232",
+                "footer": "🎯 FPS Gaming"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1438,7 +2611,14 @@
             {
               "type": "text",
               "name": "✅・verify",
-              "message": "✅ กดยืนยันตัวเพื่อเข้าสู่ช่องอื่น ๆ"
+              "message": "✅ กดยืนยันตัวเพื่อเข้าสู่ช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "✅・verify",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#F0B232",
+                "footer": "🎯 FPS Gaming"
+              }
             }
           ]
         },
@@ -1460,7 +2640,14 @@
             {
               "type": "text",
               "name": "🏅・rank-lookup",
-              "message": "🏅 ตรวจและอัปเดตแรงก์"
+              "message": "🏅 ตรวจและอัปเดตแรงก์",
+              "embed": {
+                "enabled": true,
+                "title": "🏅・rank-lookup",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#F0B232",
+                "footer": "🎯 FPS Gaming"
+              }
             },
             {
               "type": "text",
@@ -1494,12 +2681,26 @@
             {
               "type": "text",
               "name": "🎯・squad-up",
-              "message": "🎯 รวมพลทีมสร้างสควอด"
+              "message": "🎯 รวมพลทีมสร้างสควอด",
+              "embed": {
+                "enabled": true,
+                "title": "🎯・squad-up",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#F0B232",
+                "footer": "🎯 FPS Gaming"
+              }
             },
             {
               "type": "text",
               "name": "🏆・tournaments",
-              "message": "🏆 ประกาศทัวร์นาเมนต์และสมัครแข่ง"
+              "message": "🏆 ประกาศทัวร์นาเมนต์และสมัครแข่ง",
+              "embed": {
+                "enabled": true,
+                "title": "🏆・tournaments",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#F0B232",
+                "footer": "🎯 FPS Gaming"
+              }
             }
           ]
         },
@@ -1532,7 +2733,100 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "🛡️ Admin",
+          "color": "#ED4245",
+          "permissions": [
+            "manage_channels",
+            "manage_roles",
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "ban_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "🛠️ Moderator",
+          "color": "#57F287",
+          "permissions": [
+            "manage_messages",
+            "moderate_members",
+            "kick_members",
+            "view_audit_log"
+          ]
+        },
+        {
+          "name": "🎯 Player",
+          "color": "#F0B232",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ FPS Gaming!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#F0B232",
+          "footer": "FPS Gaming Team",
+          "author_name": "FPS Gaming",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "🎯 Player",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ FPS Gaming",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#F0B232",
+          "footer": "FPS Gaming · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ FPS Gaming",
+          "description": "1. ห้ามใช้โปรแกรมช่วยหรือโกงเด็ดขาด 🚫\n2. ให้เกียรติเพื่อนร่วมทีมและคู่แข่ง 🤝\n3. ห้ามสแปมหรือพูดจาหยาบคาย 💬\n4. ปฏิบัติตามกฎของเซิร์ฟเวอร์ ⚖️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "minecraft",
@@ -1543,6 +2837,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🐧 Minecraft"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#57F287",
+                "footer": "🐧 Minecraft"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#57F287",
+                "footer": "🐧 Minecraft"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1599,12 +2929,26 @@
             {
               "type": "text",
               "name": "📸・screenshots",
-              "message": "📸 แชร์ภาพในเกม"
+              "message": "📸 แชร์ภาพในเกม",
+              "embed": {
+                "enabled": true,
+                "title": "📸・screenshots",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🐧 Minecraft"
+              }
             },
             {
               "type": "text",
               "name": "🎁・giveaways",
-              "message": "🎁 กิจกรรมแจกของรางวัลในเกม"
+              "message": "🎁 กิจกรรมแจกของรางวัลในเกม",
+              "embed": {
+                "enabled": true,
+                "title": "🎁・giveaways",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🐧 Minecraft"
+              }
             }
           ]
         },
@@ -1626,7 +2970,14 @@
             {
               "type": "text",
               "name": "🤝・trades",
-              "message": "🤝 นัดแลกของระหว่างผู้เล่น"
+              "message": "🤝 นัดแลกของระหว่างผู้เล่น",
+              "embed": {
+                "enabled": true,
+                "title": "🤝・trades",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🐧 Minecraft"
+              }
             }
           ]
         },
@@ -1647,7 +2998,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🐧 Minecraft!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#57F287",
+          "footer": "🐧 Minecraft Team",
+          "author_name": "🐧 Minecraft",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🐧 Minecraft",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#57F287",
+          "footer": "🐧 Minecraft · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🐧 Minecraft",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "sports",
@@ -1658,6 +3079,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "⚽ Sports Club"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#57F287",
+                "footer": "⚽ Sports Club"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#57F287",
+                "footer": "⚽ Sports Club"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1726,12 +3183,26 @@
             {
               "type": "text",
               "name": "🏀・basketball",
-              "message": "🏀 ห้องพูดคุยบาสเกตบอล"
+              "message": "🏀 ห้องพูดคุยบาสเกตบอล",
+              "embed": {
+                "enabled": true,
+                "title": "🏀・basketball",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "⚽ Sports Club"
+              }
             },
             {
               "type": "text",
               "name": "🏐・volleyball",
-              "message": "🏐 ห้องพูดคุยวอลเลย์บอล"
+              "message": "🏐 ห้องพูดคุยวอลเลย์บอล",
+              "embed": {
+                "enabled": true,
+                "title": "🏐・volleyball",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "⚽ Sports Club"
+              }
             }
           ]
         },
@@ -1753,7 +3224,14 @@
             {
               "type": "text",
               "name": "🎥・highlights",
-              "message": "🎥 คลิปไฮไลท์การแข่งขัน"
+              "message": "🎥 คลิปไฮไลท์การแข่งขัน",
+              "embed": {
+                "enabled": true,
+                "title": "🎥・highlights",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "⚽ Sports Club"
+              }
             }
           ]
         },
@@ -1770,7 +3248,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ ⚽ Sports Club!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#57F287",
+          "footer": "⚽ Sports Club Team",
+          "author_name": "⚽ Sports Club",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ ⚽ Sports Club",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#57F287",
+          "footer": "⚽ Sports Club · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ ⚽ Sports Club",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "food",
@@ -1781,6 +3329,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🍔 Food & Cooking"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1796,7 +3380,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาในคอมมูนิตี้"
+              "message": "📜 กติกาในคอมมูนิตี้",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
             }
           ]
         },
@@ -1830,12 +3421,26 @@
             {
               "type": "text",
               "name": "🍜・asian-food",
-              "message": "🍜 ห้องอาหารเอเชีย"
+              "message": "🍜 ห้องอาหารเอเชีย",
+              "embed": {
+                "enabled": true,
+                "title": "🍜・asian-food",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
             },
             {
               "type": "text",
               "name": "🍰・desserts",
-              "message": "🍰 ของหวานและเบเกอรี่"
+              "message": "🍰 ของหวานและเบเกอรี่",
+              "embed": {
+                "enabled": true,
+                "title": "🍰・desserts",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
             },
             {
               "type": "text",
@@ -1857,12 +3462,26 @@
             {
               "type": "text",
               "name": "🛒・order-food",
-              "message": "🛒 กลุ่มออเดอร์อาหาร"
+              "message": "🛒 กลุ่มออเดอร์อาหาร",
+              "embed": {
+                "enabled": true,
+                "title": "🛒・order-food",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
             },
             {
               "type": "text",
               "name": "⭐・reviews",
-              "message": "⭐ รีวิวร้านอาหาร"
+              "message": "⭐ รีวิวร้านอาหาร",
+              "embed": {
+                "enabled": true,
+                "title": "⭐・reviews",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#ED4245",
+                "footer": "🍔 Food & Cooking"
+              }
             }
           ]
         },
@@ -1879,7 +3498,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🍔 Food & Cooking!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#ED4245",
+          "footer": "🍔 Food & Cooking Team",
+          "author_name": "🍔 Food & Cooking",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🍔 Food & Cooking",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#ED4245",
+          "footer": "🍔 Food & Cooking · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🍔 Food & Cooking",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "pets",
@@ -1890,6 +3579,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🐱 Pet Lovers"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -1905,7 +3630,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาในคอมมูนิตี้"
+              "message": "📜 กติกาในคอมมูนิตี้",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
             }
           ]
         },
@@ -1939,7 +3671,14 @@
             {
               "type": "text",
               "name": "🏡・adoptions",
-              "message": "🏡 หาบ้านให้น้องหมาหรือแมวจร"
+              "message": "🏡 หาบ้านให้น้องหมาหรือแมวจร",
+              "embed": {
+                "enabled": true,
+                "title": "🏡・adoptions",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
             }
           ]
         },
@@ -1949,17 +3688,38 @@
             {
               "type": "text",
               "name": "🐶・dog-lovers",
-              "message": "🐶 สายคนรักน้องหมา"
+              "message": "🐶 สายคนรักน้องหมา",
+              "embed": {
+                "enabled": true,
+                "title": "🐶・dog-lovers",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
             },
             {
               "type": "text",
               "name": "🐱・cat-lovers",
-              "message": "🐱 สายคนรักน้องแมว"
+              "message": "🐱 สายคนรักน้องแมว",
+              "embed": {
+                "enabled": true,
+                "title": "🐱・cat-lovers",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
             },
             {
               "type": "text",
               "name": "🐹・other-pets",
-              "message": "🐹 หนูแฮมสเตอร์ กระต่าย นก ปลา และอีกมากมาย"
+              "message": "🐹 หนูแฮมสเตอร์ กระต่าย นก ปลา และอีกมากมาย",
+              "embed": {
+                "enabled": true,
+                "title": "🐹・other-pets",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🐱 Pet Lovers"
+              }
             }
           ]
         },
@@ -1972,7 +3732,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🐱 Pet Lovers!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#EB459E",
+          "footer": "🐱 Pet Lovers Team",
+          "author_name": "🐱 Pet Lovers",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🐱 Pet Lovers",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#EB459E",
+          "footer": "🐱 Pet Lovers · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🐱 Pet Lovers",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "anime",
@@ -1983,6 +3813,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎲 Anime & Manga"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -2027,12 +3893,26 @@
             {
               "type": "text",
               "name": "📺・episode-discussion",
-              "message": "📺 ห้องคุยตอนล่าสุด (ระวังสปอยล์ในนี้ได้)"
+              "message": "📺 ห้องคุยตอนล่าสุด (ระวังสปอยล์ในนี้ได้)",
+              "embed": {
+                "enabled": true,
+                "title": "📺・episode-discussion",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
             },
             {
               "type": "text",
               "name": "📚・manga-reader",
-              "message": "📚 แนะนำและพูดคุยเรื่องมังงะ"
+              "message": "📚 แนะนำและพูดคุยเรื่องมังงะ",
+              "embed": {
+                "enabled": true,
+                "title": "📚・manga-reader",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
             },
             {
               "type": "text",
@@ -2054,12 +3934,26 @@
             {
               "type": "text",
               "name": "🎮・gacha-games",
-              "message": "🎮 คุยเกมกาชาบนมือถือ"
+              "message": "🎮 คุยเกมกาชาบนมือถือ",
+              "embed": {
+                "enabled": true,
+                "title": "🎮・gacha-games",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
             },
             {
               "type": "text",
               "name": "🎴・anime-quiz",
-              "message": "🎴 ทดสอบความรู้คนดูหนัง"
+              "message": "🎴 ทดสอบความรู้คนดูหนัง",
+              "embed": {
+                "enabled": true,
+                "title": "🎴・anime-quiz",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#EB459E",
+                "footer": "🎲 Anime & Manga"
+              }
             }
           ]
         },
@@ -2076,7 +3970,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🎲 Anime & Manga!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#EB459E",
+          "footer": "🎲 Anime & Manga Team",
+          "author_name": "🎲 Anime & Manga",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🎲 Anime & Manga",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#EB459E",
+          "footer": "🎲 Anime & Manga · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🎲 Anime & Manga",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "crypto",
@@ -2087,6 +4051,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🚀 Crypto & Trading"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -2143,12 +4143,26 @@
             {
               "type": "text",
               "name": "🔥・signals",
-              "message": "🔥 ห้องสัญญาณเทรด (ใช้วิจารณญาณ)"
+              "message": "🔥 ห้องสัญญาณเทรด (ใช้วิจารณญาณ)",
+              "embed": {
+                "enabled": true,
+                "title": "🔥・signals",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
             },
             {
               "type": "text",
               "name": "📊・portfolio",
-              "message": "📊 แชร์ผลพอร์ตการลงทุน"
+              "message": "📊 แชร์ผลพอร์ตการลงทุน",
+              "embed": {
+                "enabled": true,
+                "title": "📊・portfolio",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
             }
           ]
         },
@@ -2158,17 +4172,38 @@
             {
               "type": "text",
               "name": "₿・bitcoin",
-              "message": "₿ คุยเรื่อง Bitcoin"
+              "message": "₿ คุยเรื่อง Bitcoin",
+              "embed": {
+                "enabled": true,
+                "title": "₿・bitcoin",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
             },
             {
               "type": "text",
               "name": "🔵・ethereum",
-              "message": "🔵 คุยเรื่อง Ethereum"
+              "message": "🔵 คุยเรื่อง Ethereum",
+              "embed": {
+                "enabled": true,
+                "title": "🔵・ethereum",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
             },
             {
               "type": "text",
               "name": "🧊・altcoins",
-              "message": "🧊 คุยเรื่องสกุลเงินทางเลือก"
+              "message": "🧊 คุยเรื่องสกุลเงินทางเลือก",
+              "embed": {
+                "enabled": true,
+                "title": "🧊・altcoins",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FEE75C",
+                "footer": "🚀 Crypto & Trading"
+              }
             }
           ]
         },
@@ -2181,7 +4216,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🚀 Crypto & Trading!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#FEE75C",
+          "footer": "🚀 Crypto & Trading Team",
+          "author_name": "🚀 Crypto & Trading",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🚀 Crypto & Trading",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#FEE75C",
+          "footer": "🚀 Crypto & Trading · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🚀 Crypto & Trading",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "ai",
@@ -2192,6 +4297,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🤖 AI & Tech"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -2207,7 +4348,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาในคอมมูนิตี้"
+              "message": "📜 กติกาในคอมมูนิตี้",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
             }
           ]
         },
@@ -2241,12 +4389,26 @@
             {
               "type": "text",
               "name": "💻・prompts",
-              "message": "💻 แชร์พรอมพ์สุดเจ๋ง"
+              "message": "💻 แชร์พรอมพ์สุดเจ๋ง",
+              "embed": {
+                "enabled": true,
+                "title": "💻・prompts",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
             },
             {
               "type": "text",
               "name": "🔬・research",
-              "message": "🔬 ข่าวงานวิจัยและโมเดลใหม่"
+              "message": "🔬 ข่าวงานวิจัยและโมเดลใหม่",
+              "embed": {
+                "enabled": true,
+                "title": "🔬・research",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
             }
           ]
         },
@@ -2268,12 +4430,26 @@
             {
               "type": "text",
               "name": "🛠️・gadgets",
-              "message": "🛠️ รีวิวแกดเจ็ตและอุปกรณ์"
+              "message": "🛠️ รีวิวแกดเจ็ตและอุปกรณ์",
+              "embed": {
+                "enabled": true,
+                "title": "🛠️・gadgets",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
             },
             {
               "type": "text",
               "name": "🤝・help",
-              "message": "🤝 ช่วยเหลือและถามตอบเรื่องเทค"
+              "message": "🤝 ช่วยเหลือและถามตอบเรื่องเทค",
+              "embed": {
+                "enabled": true,
+                "title": "🤝・help",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#5865F2",
+                "footer": "🤖 AI & Tech"
+              }
             }
           ]
         },
@@ -2286,7 +4462,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🤖 AI & Tech!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#5865F2",
+          "footer": "🤖 AI & Tech Team",
+          "author_name": "🤖 AI & Tech",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🤖 AI & Tech",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#5865F2",
+          "footer": "🤖 AI & Tech · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🤖 AI & Tech",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "roleplay",
@@ -2297,6 +4543,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🎭 Roleplay"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -2341,7 +4623,14 @@
             {
               "type": "text",
               "name": "📜・character-sheets",
-              "message": "📜 สร้างและโชว์ใบตัวละคร"
+              "message": "📜 สร้างและโชว์ใบตัวละคร",
+              "embed": {
+                "enabled": true,
+                "title": "📜・character-sheets",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
             },
             {
               "type": "text",
@@ -2358,7 +4647,14 @@
             {
               "type": "text",
               "name": "🖼️・character-art",
-              "message": "🖼️ แชร์ภาพตัวละคร"
+              "message": "🖼️ แชร์ภาพตัวละคร",
+              "embed": {
+                "enabled": true,
+                "title": "🖼️・character-art",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
             }
           ]
         },
@@ -2368,12 +4664,26 @@
             {
               "type": "text",
               "name": "🏰・kingdom-a",
-              "message": "🏰 ฐานทัพฝ่าย A"
+              "message": "🏰 ฐานทัพฝ่าย A",
+              "embed": {
+                "enabled": true,
+                "title": "🏰・kingdom-a",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
             },
             {
               "type": "text",
               "name": "🐉・kingdom-b",
-              "message": "🐉 ฐานทัพฝ่าย B"
+              "message": "🐉 ฐานทัพฝ่าย B",
+              "embed": {
+                "enabled": true,
+                "title": "🐉・kingdom-b",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#57F287",
+                "footer": "🎭 Roleplay"
+              }
             }
           ]
         },
@@ -2390,7 +4700,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🎭 Roleplay!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#57F287",
+          "footer": "🎭 Roleplay Team",
+          "author_name": "🎭 Roleplay",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🎭 Roleplay",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#57F287",
+          "footer": "🎭 Roleplay · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🎭 Roleplay",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     },
     {
       "id": "cars",
@@ -2401,6 +4781,42 @@
         {
           "name": "📌 INFORMATION",
           "channels": [
+            {
+              "type": "text",
+              "name": "📝・modlogs",
+              "message": "📝 บันทึกกิจกรรมเข้า-ออกของสมาชิก",
+              "embed": {
+                "enabled": true,
+                "title": "📝 Moderation Logs",
+                "description": "บันทึกกิจกรรมของสมาชิกโดยอัตโนมัติ",
+                "color": "#2B2D31",
+                "footer": "🚗 Car Enthusiast"
+              }
+            },
+            {
+              "type": "text",
+              "name": "✅・verify",
+              "message": "✅ ยืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ",
+              "embed": {
+                "enabled": true,
+                "title": "🛡️ ยืนยันตัวตน",
+                "description": "กรุณายืนยันตัวตนเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์\nรอข้อความและปุ่มยืนยันจากบอทในช่องนี้ได้เลย",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
+            },
+            {
+              "type": "text",
+              "name": "👋・welcome",
+              "message": "👋 ยินดีต้อนรับเข้าสู่เซิร์ฟเวอร์ของเรา!",
+              "embed": {
+                "enabled": true,
+                "title": "👋 ยินดีต้อนรับ",
+                "description": "ยินดีต้อนรับทุกคนเข้าสู่คอมมูนิตี้ของเรา!\nขอให้สนุกและใช้เวลาร่วมกันอย่างมีความสุข",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
+            },
             {
               "type": "text",
               "name": "📢・announcements",
@@ -2416,7 +4832,14 @@
             {
               "type": "text",
               "name": "📜・rules",
-              "message": "📜 กติกาในคลับ"
+              "message": "📜 กติกาในคลับ",
+              "embed": {
+                "enabled": true,
+                "title": "📜・rules",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
             }
           ]
         },
@@ -2450,12 +4873,26 @@
             {
               "type": "text",
               "name": "🏁・track-day",
-              "message": "🏁 นัดขึ้นสนามและกิจกรรมรถ"
+              "message": "🏁 นัดขึ้นสนามและกิจกรรมรถ",
+              "embed": {
+                "enabled": true,
+                "title": "🏁・track-day",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
             },
             {
               "type": "text",
               "name": "🔧・mechanics",
-              "message": "🔧 ช่างและเทคนิคซ่อม"
+              "message": "🔧 ช่างและเทคนิคซ่อม",
+              "embed": {
+                "enabled": true,
+                "title": "🔧・mechanics",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
             }
           ]
         },
@@ -2465,12 +4902,26 @@
             {
               "type": "text",
               "name": "🛒・for-sale",
-              "message": "🛒 ประกาศขายรถและอะไหล่"
+              "message": "🛒 ประกาศขายรถและอะไหล่",
+              "embed": {
+                "enabled": true,
+                "title": "🛒・for-sale",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
             },
             {
               "type": "text",
               "name": "⭐・reviews",
-              "message": "⭐ รีวิวร้านและศูนย์บริการ"
+              "message": "⭐ รีวิวร้านและศูนย์บริการ",
+              "embed": {
+                "enabled": true,
+                "title": "⭐・reviews",
+                "description": "พูดคุยและแลกเปลี่ยนกันได้อย่างเป็นกันเองในช่องนี้",
+                "color": "#FECB2C",
+                "footer": "🚗 Car Enthusiast"
+              }
             }
           ]
         },
@@ -2483,7 +4934,77 @@
             }
           ]
         }
-      ]
+      ],
+      "roles": [
+        {
+          "name": "👤 Member",
+          "color": "#5865F2",
+          "permissions": [
+            "view_channel",
+            "send_messages",
+            "read_message_history",
+            "embed_links",
+            "attach_files",
+            "add_reactions",
+            "use_external_emojis",
+            "use_application_commands",
+            "connect",
+            "speak",
+            "stream"
+          ],
+          "auto": false
+        }
+      ],
+      "welcome": {
+        "enabled": true,
+        "channel": "👋・welcome",
+        "dm": true,
+        "embed": {
+          "enabled": true,
+          "title": "🎉 ยินดีต้อนรับสู่ 🚗 Car Enthusiast!",
+          "description": "ยินดีต้อนรับสมาชิกใหม่ทุกคน ✨\nขอให้สนุกกับการพูดคุยและเป็นส่วนหนึ่งของครอบครัว\nกดที่ช่อง **✅・verify** เพื่อยืนยันตัวตนและเริ่มต้นใช้งาน",
+          "color": "#FECB2C",
+          "footer": "🚗 Car Enthusiast Team",
+          "author_name": "🚗 Car Enthusiast",
+          "thumbnail": "https://cdn.discordapp.com/embed/avatars/0.png",
+          "fields": [
+            {
+              "name": "📢 ช่องประกาศ",
+              "value": "ติดตามข่าวสารได้ที่ **#📢・announcements**",
+              "inline": true
+            },
+            {
+              "name": "📜 กฎของเซิร์ฟเวอร์",
+              "value": "กรุณาอ่านที่ **#📜・rules**",
+              "inline": true
+            }
+          ]
+        }
+      },
+      "verify": {
+        "enabled": true,
+        "channel": "✅・verify",
+        "role": "👤 Member",
+        "button_label": "✅ ยืนยันตัวตน",
+        "embed": {
+          "enabled": true,
+          "title": "🛡️ ยืนยันตัวตนเพื่อเข้าสู่ 🚗 Car Enthusiast",
+          "description": "ยินดีต้อนรับ! ✨\nเพื่อเข้าถึงช่องอื่น ๆ ของเซิร์ฟเวอร์ กรุณายืนยันตัวตนโดยกดปุ่มด้านล่าง\n\n⚙️ ระบบจะแสดงกฎและขอให้คุณกด**ยอมรับ**ก่อนมอบสิทธิ์เข้าถึง",
+          "color": "#FECB2C",
+          "footer": "🚗 Car Enthusiast · ระบบยืนยันตัวตน"
+        },
+        "rules": {
+          "title": "📜 กฎของ 🚗 Car Enthusiast",
+          "description": "1. ให้เกียรติสมาชิกทุกคน 🤝\n2. ห้ามสแปมหรือโฆษณาไม่ได้รับอนุญาต 🚫\n3. ห้ามเนื้อหาที่ผิดกฎหมาย ⚖️\n4. ปฏิบัติตามคำสั่งทีมงาน 🛡️",
+          "agree_button": "🗳️ ตกลง ฉันยอมรับกฎ",
+          "color": "#ED4245"
+        }
+      },
+      "log": {
+        "enabled": true,
+        "channel": "📝・modlogs",
+        "join_leave": true
+      }
     }
   ]
 }

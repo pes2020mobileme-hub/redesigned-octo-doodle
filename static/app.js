@@ -338,6 +338,17 @@
       '<div class="pv-server">🧩 ' + esc(t.name) +
       ' <span class="pv-sub">' + esc(t.description || "") + "</span></div>" +
       '<div class="pv-total">📁 ' + tw.length + " Categories · 💬 " + totalCh + " Channels</div>";
+    var extras = [];
+    if (t.welcome && t.welcome.enabled) extras.push("👋 Welcome");
+    if (t.verify && t.verify.enabled) extras.push("🛡️ Verify");
+    if (t.role_buttons && t.role_buttons.enabled) extras.push("🎭 Role Panel");
+    if (t.ticket && t.ticket.enabled) extras.push("🎫 Ticket");
+    if (t.log && t.log.enabled) extras.push("📝 Log");
+    if (extras.length) {
+      html += '<div class="pv-extras">' +
+        extras.map(function (x) { return '<span class="badge b-purple">' + x + "</span>"; }).join("") +
+        "</div>";
+    }
     tw.forEach(function (cat) {
       html += '<details class="pv-cat" open><summary>📁 ' + esc(cat.name) + "</summary>";
       (cat.channels || []).forEach(function (ch) {
@@ -398,6 +409,7 @@
     if (result.roles_created) parts.push("🎭 Role " + result.roles_created + "/" + result.roles_reused);
     if (result.role_button_msgs) parts.push("🔘 ปุ่ม " + result.role_button_msgs);
     if (result.tickets_setup) parts.push("🎫 Ticket " + result.tickets_setup);
+    if (result.verification_setup) parts.push("🛡️ Verify " + result.verification_setup);
     showLogLine("✅ สร้างเสร็จ: " + parts.join(" · "), "success");
   }
 
